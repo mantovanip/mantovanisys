@@ -1984,11 +1984,35 @@ ul {
     visibility: visible;
 
     transform: translateY(0);
+
+    background:
+        rgba(205, 255, 248, 0.16);
+
+    border-color:
+        rgba(205, 255, 248, 0.72);
+
+    box-shadow:
+        0 0 18px rgba(205, 255, 248, 0.35),
+        inset 0 0 10px rgba(255, 255, 255, 0.08);
+
+    animation:
+        back-to-top-float 2.8s ease-in-out infinite;
+}
+
+@keyframes back-to-top-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
 }
 
 .back-to-top:hover {
     background:
-        rgba(35,142,234,0.18);
+        rgba(205, 255, 248, 0.18);
 
     border-color:
         var(--border-blue);
