@@ -1,126 +1,1404 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
 
-  <title>Mantovani SYS | Criação de Sites e Presença Digital que Gera Clientes</title>
+    <!-- Responsividade -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description"
-    content="Criação de sites profissionais, presença no Google e automação para pequenos negócios. Atraia clientes todos os dias com estratégias simples e eficientes." />
+    <!-- SEO principal -->
+    <title>MantovaniSys | Criação de Sites Profissionais</title>
 
-  <meta name="robots" content="index, follow" />
+    <meta
+        name="description"
+        content="Criação de sites profissionais para empresas e pequenos negócios. Sites rápidos, responsivos e preparados para gerar presença digital e novos clientes."
+    >
 
-  <link rel="canonical" href="https://mantovanisys.com.br/">
+    <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    >
 
-  <meta property="og:title" content="Seu negócio precisa aparecer." />
-  <meta property="og:description"
-    content="Sites profissionais e estratégias simples que geram clientes todos os dias." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://mantovanisys.com.br/logo.png" />
+    <meta name="author" content="MantovaniSys">
 
-  <link rel="icon" href="https://mantovanisys.com.br/logo.png" />
+    <!-- URL oficial -->
+    <link rel="canonical" href="https://mantovanisys.com.br/">
 
-  <link rel="stylesheet" href="style.css" />
+    <!-- Cor do navegador -->
+    <meta name="theme-color" content="#06111f">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Open Graph - Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MantovaniSys">
+    <meta
+        property="og:title"
+        content="Seu negócio precisa aparecer."
+    >
+    <meta
+        property="og:description"
+        content="Sites profissionais e estratégias digitais para empresas que querem ser encontradas e conquistar mais clientes."
+    >
+    <meta
+        property="og:url"
+        content="https://mantovanisys.com.br/"
+    >
+    <meta
+        property="og:image"
+        content="https://mantovanisys.com.br/logo.png"
+    >
+    <meta property="og:image:alt" content="MantovaniSys - Criação de Sites Profissionais">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta
+        name="twitter:title"
+        content="MantovaniSys | Criação de Sites Profissionais"
+    >
+    <meta
+        name="twitter:description"
+        content="Sites profissionais e presença digital para empresas e pequenos negócios."
+    >
+    <meta
+        name="twitter:image"
+        content="https://mantovanisys.com.br/logo.png"
+    >
+
+    <!-- =========================================================
+         DADOS ESTRUTURADOS - SCHEMA.ORG
+         ========================================================= -->
+
+    <!-- Empresa / Serviço profissional -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://mantovanisys.com.br/#business",
+        "name": "MantovaniSys",
+        "url": "https://mantovanisys.com.br/",
+        "logo": "https://mantovanisys.com.br/logo.png",
+        "description": "Criação de sites profissionais, presença digital, SEO local e soluções digitais para empresas e pequenos negócios.",
+        "telephone": "+55 48 99955-7822",
+        "email": "pauletimantova@gmail.com",
+        "priceRange": "$$"
+    }
+    </script>
+
+    <!-- Website -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://mantovanisys.com.br/#website",
+        "url": "https://mantovanisys.com.br/",
+        "name": "MantovaniSys",
+        "description": "Criação de sites profissionais e soluções de presença digital.",
+        "publisher": {
+            "@id": "https://mantovanisys.com.br/#business"
+        },
+        "inLanguage": "pt-BR"
+    }
+    </script>
+
+    <!-- Página -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://mantovanisys.com.br/#webpage",
+        "url": "https://mantovanisys.com.br/",
+        "name": "MantovaniSys | Criação de Sites Profissionais",
+        "description": "Criação de sites profissionais para empresas e pequenos negócios.",
+        "isPartOf": {
+            "@id": "https://mantovanisys.com.br/#website"
+        },
+        "about": {
+            "@id": "https://mantovanisys.com.br/#business"
+        },
+        "inLanguage": "pt-BR"
+    }
+    </script>
+
+    <!-- Serviços -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Serviços MantovaniSys",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "Service",
+                    "name": "Criação de Sites Profissionais",
+                    "description": "Desenvolvimento de sites profissionais, responsivos e preparados para apresentar empresas na internet."
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Service",
+                    "name": "Presença no Google",
+                    "description": "Estratégias para melhorar a presença digital e facilitar que potenciais clientes encontrem a empresa."
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "Service",
+                    "name": "Automação Digital",
+                    "description": "Soluções digitais para simplificar processos e melhorar o atendimento aos clientes."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- FAQ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Por que minha empresa precisa de um site?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Um site profissional funciona como uma presença digital própria da empresa, ajuda clientes a conhecer seus serviços e facilita o contato."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "O site funciona no celular?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sim. Os sites são desenvolvidos com design responsivo para funcionar em celulares, tablets e computadores."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Meu site pode aparecer no Google?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "O site é desenvolvido seguindo boas práticas técnicas de SEO e pode ser configurado para facilitar o rastreamento e a indexação pelos mecanismos de busca. A posição nos resultados depende de diversos fatores."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Vocês criam sites para pequenos negócios?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sim. A MantovaniSys desenvolve soluções digitais para pequenos negócios e empresas que precisam construir ou melhorar sua presença na internet."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-  <header class="header">
-    <div class="container nav">
-      <img src="logo.png" alt="Mantovani SYS - Soluções Digitais" class="logo">
+    <!-- =========================================================
+         HEADER
+         ========================================================= -->
 
-      <a href="https://wa.me/5548999557822?text=Olá,%20vim%20pelo%20site%20Mantovani%20SYS%20e%20quero%20um%20orçamento."
-        target="_blank" class="btn btn-outline">
-        Falar no WhatsApp
-      </a>
-    </div>
-  </header>
+    <header class="header" id="header">
 
-  <section class="hero">
-    <div class="container hero-content">
-      <h1>
-        Seu negócio não cresce por falta de clientes.
-        <br>
-        <span>Ele não cresce porque não aparece.</span>
-      </h1>
+        <div class="container nav-container">
 
-      <p>
-        Nós criamos sites profissionais, posicionamos seu negócio no Google
-        e automatizamos seu atendimento para você atrair clientes todos os dias —
-        mesmo enquanto dorme.
-      </p>
+            <a href="#inicio" class="logo-link" aria-label="MantovaniSys - Página inicial">
+                <img
+                    src="logo.png"
+                    alt="MantovaniSys"
+                    class="logo"
+                    width="180"
+                    height="auto"
+                >
+            </a>
 
-      <div class="hero-actions">
-        <a href="https://wa.me/5548999557822?text=Olá,%20quero%20criar%20um%20site%20ou%20melhorar%20minha%20presença%20digital."
-          target="_blank" class="btn btn-primary">
-          Quero atrair mais clientes
-        </a>
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="mainNav"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-        <a href="#services" class="btn btn-outline">
-          Ver como funciona
-        </a>
-      </div>
-    </div>
-  </section>
+            <nav class="nav" id="mainNav" aria-label="Navegação principal">
 
-  <section id="services" class="services">
-    <div class="container">
-      <h2>Como fazemos seu negócio crescer</h2>
+                <a href="#inicio">Início</a>
+                <a href="#solucao">Solução</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#cases">Projetos</a>
+                <a href="#processo">Como funciona</a>
+                <a href="#faq">FAQ</a>
 
-      <div class="cards">
+                <a
+                    href="https://wa.me/5548999557822"
+                    class="nav-cta whatsapp-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Falar no WhatsApp
+                </a>
 
-        <div class="card">
-          <h3>Sites que vendem por você</h3>
-          <p>
-            Criamos sites rápidos, modernos e focados em conversão, feitos para transformar visitantes em clientes
-            reais.
-          </p>
+            </nav>
+
         </div>
 
-        <div class="card">
-          <h3>Você no topo do Google</h3>
-          <p>
-            Posicionamos seu negócio no Google para que clientes da sua região te encontrem antes da concorrência.
-          </p>
+    </header>
+
+
+    <main>
+
+        <!-- =====================================================
+             HERO
+             ===================================================== -->
+
+        <section class="hero" id="inicio">
+
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+
+                    <span class="eyebrow">
+                        PRESENÇA DIGITAL QUE GERA OPORTUNIDADES
+                    </span>
+
+                    <h1>
+                        Seu negócio não cresce por falta de clientes.
+                        <strong>Ele não cresce porque não aparece.</strong>
+                    </h1>
+
+                    <p class="hero-description">
+                        Criamos sites profissionais para empresas que querem
+                        deixar de depender apenas das redes sociais e construir
+                        uma presença digital própria.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="https://wa.me/5548999557822"
+                            class="btn btn-primary whatsapp-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Quero colocar minha empresa no Google
+                        </a>
+
+                        <a href="#cases" class="btn btn-secondary">
+                            Ver projetos
+                        </a>
+
+                    </div>
+
+                    <div class="hero-trust">
+
+                        <div>
+                            <strong>Sites profissionais</strong>
+                            <span>Design moderno e responsivo</span>
+                        </div>
+
+                        <div>
+                            <strong>SEO preparado</strong>
+                            <span>Estrutura pensada para buscadores</span>
+                        </div>
+
+                        <div>
+                            <strong>Atendimento direto</strong>
+                            <span>Fale conosco pelo WhatsApp</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual">
+
+                    <div class="browser-window">
+
+                        <div class="browser-top">
+
+                            <div class="browser-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <div class="browser-address">
+                                seu-negocio.com.br
+                            </div>
+
+                        </div>
+
+                        <div class="browser-content">
+
+                            <div class="mock-logo">
+                                MANTOVANISYS
+                            </div>
+
+                            <div class="mock-title">
+                                Seu negócio
+                                <span>merece aparecer.</span>
+                            </div>
+
+                            <div class="mock-lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <div class="mock-button">
+                                Conheça nossa empresa
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROBLEMA
+             ===================================================== -->
+
+        <section class="section problem" id="problema">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="eyebrow">
+                        O PROBLEMA
+                    </span>
+
+                    <h2>
+                        Enquanto você não aparece,
+                        <span>seu concorrente aparece.</span>
+                    </h2>
+
+                    <p>
+                        Hoje, antes de comprar, contratar ou visitar uma empresa,
+                        muitas pessoas pesquisam na internet. Se sua empresa
+                        não transmite confiança online, outra empresa pode
+                        ocupar esse espaço.
+                    </p>
+
+                </div>
+
+
+                <div class="problem-grid">
+
+                    <article class="problem-card">
+
+                        <div class="problem-number">01</div>
+
+                        <h3>Você depende das redes sociais</h3>
+
+                        <p>
+                            Seu negócio fica dependente de plataformas que
+                            podem mudar regras, alcance e algoritmos a qualquer momento.
+                        </p>
+
+                    </article>
+
+
+                    <article class="problem-card">
+
+                        <div class="problem-number">02</div>
+
+                        <h3>Seu cliente pesquisa antes de comprar</h3>
+
+                        <p>
+                            Uma presença digital profissional ajuda sua empresa
+                            a transmitir credibilidade no momento da decisão.
+                        </p>
+
+                    </article>
+
+
+                    <article class="problem-card">
+
+                        <div class="problem-number">03</div>
+
+                        <h3>Seu concorrente ocupa o espaço</h3>
+
+                        <p>
+                            Quando o cliente encontra outra empresa primeiro,
+                            você pode perder uma oportunidade antes mesmo de
+                            iniciar uma conversa.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SOLUÇÃO
+             ===================================================== -->
+
+        <section class="section solution" id="solucao">
+
+            <div class="container solution-grid">
+
+                <div class="solution-content">
+
+                    <span class="eyebrow">
+                        A SOLUÇÃO
+                    </span>
+
+                    <h2>
+                        Seu negócio precisa de uma
+                        <span>casa própria na internet.</span>
+                    </h2>
+
+                    <p>
+                        A MantovaniSys cria sites profissionais pensados para
+                        apresentar sua empresa, facilitar o contato com clientes
+                        e construir uma presença digital mais sólida.
+                    </p>
+
+                    <p>
+                        Não entregamos apenas uma página bonita.
+                        Construímos uma estrutura digital pensada para
+                        comunicação, confiança e conversão.
+                    </p>
+
+                    <a href="#servicos" class="text-link">
+                        Conheça nossas soluções →
+                    </a>
+
+                </div>
+
+
+                <div class="solution-points">
+
+                    <div class="solution-point">
+
+                        <span class="point-icon">01</span>
+
+                        <div>
+                            <h3>Profissionalismo</h3>
+                            <p>
+                                Uma apresentação digital alinhada à imagem
+                                da sua empresa.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="solution-point">
+
+                        <span class="point-icon">02</span>
+
+                        <div>
+                            <h3>Visibilidade</h3>
+                            <p>
+                                Estrutura técnica preparada para mecanismos
+                                de busca.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="solution-point">
+
+                        <span class="point-icon">03</span>
+
+                        <div>
+                            <h3>Conversão</h3>
+                            <p>
+                                Caminhos claros para o visitante entrar
+                                em contato com sua empresa.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SERVIÇOS
+             ===================================================== -->
+
+        <section class="section services" id="servicos">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        O QUE FAZEMOS
+                    </span>
+
+                    <h2>
+                        Soluções digitais para
+                        <span>fazer sua empresa aparecer.</span>
+                    </h2>
+
+                    <p>
+                        Uma estrutura simples, profissional e pensada
+                        para transformar presença digital em oportunidades.
+                    </p>
+
+                </div>
+
+
+                <div class="services-grid">
+
+                    <article class="service-card featured">
+
+                        <span class="service-number">01</span>
+
+                        <h3>Criação de Sites</h3>
+
+                        <p>
+                            Sites profissionais, rápidos, responsivos e
+                            desenvolvidos para apresentar sua empresa
+                            de forma clara e confiável.
+                        </p>
+
+                        <ul>
+                            <li>Design profissional</li>
+                            <li>Responsivo para celular</li>
+                            <li>SEO técnico</li>
+                            <li>Botões de contato</li>
+                        </ul>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <span class="service-number">02</span>
+
+                        <h3>Presença no Google</h3>
+
+                        <p>
+                            Estrutura digital preparada para ajudar sua
+                            empresa a ser encontrada por pessoas que já
+                            estão procurando pelos seus serviços.
+                        </p>
+
+                        <ul>
+                            <li>Estrutura SEO</li>
+                            <li>Google Search Console</li>
+                            <li>Indexação</li>
+                            <li>SEO local</li>
+                        </ul>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <span class="service-number">03</span>
+
+                        <h3>Automação Digital</h3>
+
+                        <p>
+                            Soluções para reduzir tarefas repetitivas,
+                            melhorar o atendimento e facilitar processos
+                            digitais do negócio.
+                        </p>
+
+                        <ul>
+                            <li>Automação</li>
+                            <li>Integrações</li>
+                            <li>Formulários</li>
+                            <li>Fluxos digitais</li>
+                        </ul>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CASES
+             ===================================================== -->
+
+        <section class="section cases" id="cases">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="eyebrow">
+                        PROJETOS
+                    </span>
+
+                    <h2>
+                        Projetos que já
+                        <span>saíram do papel.</span>
+                    </h2>
+
+                    <p>
+                        Alguns exemplos de projetos desenvolvidos
+                        pela MantovaniSys.
+                    </p>
+
+                </div>
+
+
+                <div class="cases-grid">
+
+                    <article class="case-card">
+
+                        <div class="case-image">
+
+                            <img
+                                src="images/case-lubrisin.png"
+                                alt="Site da Lubrisin desenvolvido pela MantovaniSys"
+                                loading="lazy"
+                                width="1200"
+                                height="750"
+                            >
+
+                        </div>
+
+                        <div class="case-content">
+
+                            <span class="case-category">
+                                SITE INSTITUCIONAL
+                            </span>
+
+                            <h3>Lubrisin</h3>
+
+                            <p>
+                                Presença digital profissional para uma empresa
+                                do segmento de lubrificantes.
+                            </p>
+
+                            <a
+                                href="https://www.lubrisin.com.br/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="case-link"
+                            >
+                                Visitar projeto →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="case-card">
+
+                        <div class="case-image">
+
+                            <img
+                                src="images/case-ell-transportes.png"
+                                alt="Site da ELL Transportes desenvolvido pela MantovaniSys"
+                                loading="lazy"
+                                width="1200"
+                                height="750"
+                            >
+
+                        </div>
+
+                        <div class="case-content">
+
+                            <span class="case-category">
+                                SITE EMPRESARIAL
+                            </span>
+
+                            <h3>ELL Transportes</h3>
+
+                            <p>
+                                Site profissional para apresentar os serviços
+                                e fortalecer a presença digital da empresa.
+                            </p>
+
+                            <a
+                                href="https://www.elltransportesexpress.com.br/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="case-link"
+                            >
+                                Visitar projeto →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PLANOS
+             ===================================================== -->
+
+        <section class="section plans" id="planos">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        INVESTIMENTO
+                    </span>
+
+                    <h2>
+                        Uma solução para cada
+                        <span>momento do seu negócio.</span>
+                    </h2>
+
+                    <p>
+                        Podemos adaptar o projeto de acordo com o tamanho
+                        e os objetivos da sua empresa.
+                    </p>
+
+                </div>
+
+
+                <div class="plans-grid">
+
+                    <article class="plan-card">
+
+                        <span class="plan-label">
+                            PRESENÇA
+                        </span>
+
+                        <h3>Essencial</h3>
+
+                        <p class="plan-description">
+                            Para empresas que precisam começar
+                            a construir sua presença digital.
+                        </p>
+
+                        <ul>
+                            <li>Site profissional</li>
+                            <li>Design responsivo</li>
+                            <li>Botão de WhatsApp</li>
+                            <li>SEO básico</li>
+                        </ul>
+
+                        <a
+                            href="https://wa.me/5548999557822?text=Olá!%20Quero%20conhecer%20o%20plano%20Essencial."
+                            class="btn btn-secondary whatsapp-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Solicitar orçamento
+                        </a>
+
+                    </article>
+
+
+                    <article class="plan-card popular">
+
+                        <span class="plan-label">
+                            MAIS COMPLETO
+                        </span>
+
+                        <h3>Profissional</h3>
+
+                        <p class="plan-description">
+                            Para empresas que querem uma presença
+                            digital mais estratégica.
+                        </p>
+
+                        <ul>
+                            <li>Site profissional completo</li>
+                            <li>SEO técnico</li>
+                            <li>Estrutura para Google</li>
+                            <li>Integrações</li>
+                            <li>Formulários e conversão</li>
+                        </ul>
+
+                        <a
+                            href="https://wa.me/5548999557822?text=Olá!%20Quero%20conhecer%20o%20plano%20Profissional."
+                            class="btn btn-primary whatsapp-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Solicitar orçamento
+                        </a>
+
+                    </article>
+
+
+                    <article class="plan-card">
+
+                        <span class="plan-label">
+                            ESTRATÉGIA
+                        </span>
+
+                        <h3>Sob medida</h3>
+
+                        <p class="plan-description">
+                            Para projetos que precisam de funcionalidades
+                            e soluções específicas.
+                        </p>
+
+                        <ul>
+                            <li>Projeto personalizado</li>
+                            <li>Integrações</li>
+                            <li>Automação</li>
+                            <li>Funcionalidades específicas</li>
+                        </ul>
+
+                        <a
+                            href="https://wa.me/5548999557822?text=Olá!%20Quero%20conversar%20sobre%20um%20projeto%20personalizado."
+                            class="btn btn-secondary whatsapp-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Falar sobre projeto
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             BENEFÍCIOS
+             ===================================================== -->
+
+        <section class="section benefits">
+
+            <div class="container">
+
+                <div class="benefits-grid">
+
+                    <div class="benefits-heading">
+
+                        <span class="eyebrow">
+                            POR QUE MANTOVANISYS
+                        </span>
+
+                        <h2>
+                            Não é só sobre
+                            <span>ter um site.</span>
+                        </h2>
+
+                        <p>
+                            É sobre ter uma estrutura digital que trabalhe
+                            pela imagem da sua empresa todos os dias.
+                        </p>
+
+                    </div>
+
+
+                    <div class="benefits-list">
+
+                        <div class="benefit">
+
+                            <span>01</span>
+
+                            <div>
+                                <h3>Credibilidade</h3>
+                                <p>
+                                    Uma presença profissional ajuda a
+                                    transmitir confiança antes mesmo
+                                    do primeiro contato.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="benefit">
+
+                            <span>02</span>
+
+                            <div>
+                                <h3>Disponibilidade</h3>
+                                <p>
+                                    Seu site pode apresentar sua empresa
+                                    24 horas por dia.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="benefit">
+
+                            <span>03</span>
+
+                            <div>
+                                <h3>Mais oportunidades</h3>
+                                <p>
+                                    Clientes podem encontrar informações
+                                    sobre sua empresa e entrar em contato
+                                    com mais facilidade.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="benefit">
+
+                            <span>04</span>
+
+                            <div>
+                                <h3>Ativo próprio</h3>
+                                <p>
+                                    Você constrói uma presença digital
+                                    em um endereço que pertence ao seu negócio.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROCESSO
+             ===================================================== -->
+
+        <section class="section process" id="processo">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        COMO FUNCIONA
+                    </span>
+
+                    <h2>
+                        Do primeiro contato ao
+                        <span>site no ar.</span>
+                    </h2>
+
+                </div>
+
+
+                <div class="process-grid">
+
+                    <div class="process-step">
+
+                        <span class="step-number">01</span>
+
+                        <h3>Conversa</h3>
+
+                        <p>
+                            Entendemos seu negócio, seus serviços
+                            e o que você precisa.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-step">
+
+                        <span class="step-number">02</span>
+
+                        <h3>Planejamento</h3>
+
+                        <p>
+                            Definimos estrutura, conteúdo, visual
+                            e funcionalidades.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-step">
+
+                        <span class="step-number">03</span>
+
+                        <h3>Desenvolvimento</h3>
+
+                        <p>
+                            Criamos e configuramos o projeto
+                            para funcionar em diferentes dispositivos.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-step">
+
+                        <span class="step-number">04</span>
+
+                        <h3>Publicação</h3>
+
+                        <p>
+                            Colocamos o projeto no ar e deixamos
+                            sua presença digital pronta para crescer.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FAQ
+             ===================================================== -->
+
+        <section class="section faq" id="faq">
+
+            <div class="container faq-container">
+
+                <div class="section-heading">
+
+                    <span class="eyebrow">
+                        DÚVIDAS
+                    </span>
+
+                    <h2>
+                        Perguntas
+                        <span>frequentes.</span>
+                    </h2>
+
+                </div>
+
+
+                <div class="faq-list">
+
+                    <div class="faq-item">
+
+                        <button
+                            class="faq-question"
+                            type="button"
+                            aria-expanded="false"
+                        >
+                            <span>
+                                Por que minha empresa precisa de um site?
+                            </span>
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Um site profissional funciona como uma
+                                presença digital própria da empresa, ajuda
+                                clientes a conhecer seus serviços e facilita
+                                o contato.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="faq-item">
+
+                        <button
+                            class="faq-question"
+                            type="button"
+                            aria-expanded="false"
+                        >
+                            <span>
+                                O site funciona no celular?
+                            </span>
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Sim. Os projetos são desenvolvidos com
+                                design responsivo para funcionar em celulares,
+                                tablets e computadores.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="faq-item">
+
+                        <button
+                            class="faq-question"
+                            type="button"
+                            aria-expanded="false"
+                        >
+                            <span>
+                                Meu site pode aparecer no Google?
+                            </span>
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                A estrutura é desenvolvida seguindo boas
+                                práticas técnicas de SEO para facilitar
+                                o rastreamento e a indexação pelos mecanismos
+                                de busca. A posição nos resultados depende
+                                de diversos fatores.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="faq-item">
+
+                        <button
+                            class="faq-question"
+                            type="button"
+                            aria-expanded="false"
+                        >
+                            <span>
+                                Vocês criam sites para pequenos negócios?
+                            </span>
+
+                            <span class="faq-icon">+</span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Sim. A MantovaniSys desenvolve soluções
+                                digitais para pequenos negócios e empresas
+                                que precisam construir ou melhorar sua
+                                presença na internet.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CTA FINAL
+             ===================================================== -->
+
+        <section class="final-cta">
+
+            <div class="container final-cta-content">
+
+                <span class="eyebrow">
+                    PRONTO PARA COMEÇAR?
+                </span>
+
+                <h2>
+                    Enquanto você não aparece,
+                    <span>seu concorrente aparece no seu lugar.</span>
+                </h2>
+
+                <p>
+                    Vamos transformar sua presença digital em uma
+                    ferramenta profissional para o seu negócio.
+                </p>
+
+                <a
+                    href="https://wa.me/5548999557822?text=Olá!%20Quero%20criar%20um%20site%20para%20minha%20empresa."
+                    class="btn btn-primary btn-large whatsapp-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Quero falar sobre meu projeto
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+
+                <a href="#inicio" aria-label="Voltar para o início">
+
+                    <img
+                        src="logo2.png"
+                        alt="MantovaniSys"
+                        width="180"
+                        height="auto"
+                    >
+
+                </a>
+
+                <p>
+                    Criação de sites profissionais e soluções digitais
+                    para empresas que querem ser encontradas.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Navegação</h3>
+
+                <a href="#inicio">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#cases">Projetos</a>
+                <a href="#processo">Como funciona</a>
+                <a href="#faq">FAQ</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Contato</h3>
+
+                <a
+                    href="https://wa.me/5548999557822"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    WhatsApp
+                </a>
+
+                <a href="mailto:pauletimantova@gmail.com">
+                    E-mail
+                </a>
+
+                <a href="https://mantovanisys.com.br/">
+                    mantovanisys.com.br
+                </a>
+
+            </div>
+
         </div>
 
-        <div class="card">
-          <h3>Automação inteligente</h3>
-          <p>
-            Integramos WhatsApp, respostas automáticas e processos simples para você ganhar tempo e nunca perder um
-            cliente.
-          </p>
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    © 2026 MantovaniSys. Todos os direitos reservados.
+                </p>
+
+            </div>
+
         </div>
 
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <section class="cta">
-    <div class="container">
-      <h2>Enquanto você não aparece, seu concorrente aparece no seu lugar.</h2>
 
-      <p>
-        A diferença entre um negócio parado e um negócio crescendo está na visibilidade.
-        Comece agora com uma estrutura simples que realmente funciona.
-      </p>
+    <!-- =========================================================
+         WHATSAPP FLUTUANTE
+         ========================================================= -->
 
-      <a href="https://wa.me/5548999557822?text=Olá,%20quero%20começar%20agora%20e%20atrair%20mais%20clientes."
-        target="_blank" class="btn btn-primary">
-        Falar com especialista agora
-      </a>
-    </div>
-  </section>
+    <a
+        href="https://wa.me/5548999557822?text=Olá!%20Vim%20pelo%20site%20da%20MantovaniSys."
+        class="floating-whatsapp whatsapp-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Falar com a MantovaniSys pelo WhatsApp"
+    >
 
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 Mantovani SYS — Todos os direitos reservados</p>
+        <svg
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+            focusable="false"
+        >
 
-    </div>
-  </footer>
+            <path d="M19.11 17.2c-.27-.14-1.58-.78-1.82-.87-.24-.09-.42-.14-.6.14-.18.27-.69.87-.84 1.05-.15.18-.31.2-.58.07-.27-.14-1.13-.42-2.15-1.34-.79-.7-1.32-1.56-1.48-1.82-.15-.27-.02-.41.11-.54.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.14-.6-1.45-.82-1.99-.22-.52-.44-.45-.6-.46h-.51c-.18 0-.47.07-.71.34-.24.27-.93.91-.93 2.22s.96 2.57 1.09 2.75c.13.18 1.89 2.89 4.58 4.05.64.28 1.14.45 1.53.58.64.2 1.22.17 1.68.1.51-.08 1.58-.65 1.8-1.27.22-.62.22-1.15.15-1.27-.06-.12-.24-.19-.51-.33z"/>
+
+            <path d="M16.02 3.2c-7.08 0-12.83 5.75-12.83 12.83 0 2.26.59 4.46 1.71 6.4L3.07 28.8l6.52-1.71a12.77 12.77 0 0 0 6.43 1.74h.01c7.07 0 12.82-5.75 12.82-12.83S23.1 3.2 16.02 3.2zm0 23.48h-.01c-2.01 0-3.98-.54-5.69-1.56l-.41-.24-3.87 1.01 1.03-3.77-.27-.42a10.64 10.64 0 0 1-1.64-5.67c0-5.88 4.79-10.67 10.68-10.67 2.85 0 5.53 1.11 7.54 3.13a10.59 10.59 0 0 1 3.12 7.55c0 5.88-4.78 10.64-10.65 10.64z"/>
+
+        </svg>
+
+        <span>WhatsApp</span>
+
+    </a>
+
+
+    <!-- =========================================================
+         VOLTAR AO TOPO
+         ========================================================= -->
+
+    <button
+        id="backToTop"
+        class="back-to-top"
+        aria-label="Voltar ao topo"
+        type="button"
+    >
+        ↑
+    </button>
+
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
 
 </body>
-
 </html>
