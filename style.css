@@ -6,20 +6,20 @@
    ========================================================= */
 
 :root {
-    --blue-dark: #06111f;
-    --blue-dark-2: #0a1c30;
-    --blue-mid: #103454;
+    --blue-dark: #0b1f33;
+    --blue-dark-2: #f7f9fc;
+    --blue-mid: #123a5d;
 
-    --blue: #238eea;
-    --blue-light: #66c7ff;
-    --blue-soft: #b8e5ff;
+    --blue: #1683d8;
+    --blue-light: #5cb9f2;
+    --blue-soft: #dceffc;
 
     --white: #ffffff;
-    --text: #e7f1fa;
-    --text-muted: #9fb2c5;
+    --text: #122033;
+    --text-muted: #64748b;
 
-    --border: rgba(255, 255, 255, 0.10);
-    --border-blue: rgba(35, 142, 234, 0.30);
+    --border: #e6ecf2;
+    --border-blue: rgba(22, 131, 216, 0.35);
 
     --whatsapp: #25d366;
 
@@ -28,7 +28,7 @@
     --radius: 18px;
     --radius-small: 12px;
 
-    --shadow: 0 20px 60px rgba(0, 0, 0, 0.30);
+    --shadow: 0 10px 35px rgba(11, 31, 51, 0.07);
 
     --transition: 0.3s ease;
 }
@@ -2020,13 +2020,13 @@ ul {
     transform: translateY(0);
 
     background:
-        rgba(205, 255, 248, 0.16);
+        rgba(255, 255, 255, 0.16);
 
     border-color:
-        rgba(205, 255, 248, 0.72);
+        rgba(102, 199, 255, 0.72);
 
     box-shadow:
-        0 0 18px rgba(205, 255, 248, 0.35),
+        0 0 18px rgba(35, 142, 234, 0.35),
         inset 0 0 10px rgba(255, 255, 255, 0.08);
 
     animation:
@@ -2046,7 +2046,7 @@ ul {
 
 .back-to-top:hover {
     background:
-        rgba(205, 255, 248, 0.18);
+        rgba(255, 255, 255, 0.18);
 
     border-color:
         var(--border-blue);
@@ -2350,5 +2350,396 @@ ul {
         animation-iteration-count: 1 !important;
 
         transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* =========================================================
+   REFINAMENTO VISUAL
+   ========================================================= */
+
+body {
+    background: #ffffff;
+    color: var(--text);
+}
+
+.header {
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom-color: transparent;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: var(--border);
+    box-shadow: 0 8px 24px rgba(11, 31, 51, 0.06);
+}
+
+.nav > a:not(.nav-cta) {
+    color: var(--text-muted);
+}
+
+.nav > a:not(.nav-cta):hover {
+    color: var(--blue-dark);
+}
+
+.nav-cta {
+    border-color: rgba(22, 131, 216, 0.25);
+    background: rgba(22, 131, 216, 0.08);
+    color: var(--blue-dark);
+}
+
+.nav-cta:hover {
+    background: rgba(22, 131, 216, 0.14);
+    border-color: var(--blue);
+}
+
+.hero {
+    background: #f7f9fc;
+}
+
+.hero::before {
+    display: none;
+}
+
+.hero h1,
+.hero-trust strong,
+.section-heading h2,
+.problem-card h3,
+.solution-point h3,
+.service-card h3,
+.case-content h3,
+.plan-card h3,
+.benefit h3,
+.process-step h3,
+.faq-question {
+    color: var(--text);
+}
+
+.hero h1 strong,
+.section-heading h2 span,
+.final-cta h2 span {
+    background: none;
+    color: var(--blue);
+    -webkit-text-fill-color: initial;
+}
+
+.hero-description,
+.section-heading p,
+.problem-card p,
+.solution-content p,
+.solution-point p,
+.service-card > p,
+.case-content p,
+.plan-description,
+.benefit p,
+.process-step p,
+.faq-answer p,
+.hero-trust span {
+    color: var(--text-muted);
+}
+
+.btn-primary {
+    background: var(--blue);
+    border-color: var(--blue);
+    box-shadow: 0 10px 24px rgba(22, 131, 216, 0.18);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 14px 30px rgba(22, 131, 216, 0.24);
+}
+
+.btn-secondary {
+    color: var(--blue-dark);
+    background: #ffffff;
+    border-color: var(--border);
+}
+
+.btn-secondary:hover {
+    background: #ffffff;
+    border-color: var(--blue);
+}
+
+.hero-trust,
+.faq-list,
+.faq-item {
+    border-color: var(--border);
+}
+
+.browser-window {
+    background: #ffffff;
+    border-color: var(--border);
+    box-shadow: 0 20px 55px rgba(11, 31, 51, 0.12);
+    transform: none;
+}
+
+.browser-window:hover {
+    transform: translateY(-4px);
+}
+
+.browser-top {
+    background: #ffffff;
+    border-bottom-color: var(--border);
+}
+
+.browser-dots span {
+    background: #cbd5e1;
+}
+
+.browser-address {
+    background: #f7f9fc;
+    color: var(--text-muted);
+}
+
+.browser-content {
+    min-height: 460px;
+    background: linear-gradient(145deg, #ffffff, #eef6fc);
+}
+
+.mock-logo,
+.mock-title span {
+    color: var(--blue);
+}
+
+.mock-title {
+    color: var(--text);
+}
+
+.mock-lines span {
+    background: #dbe7f0;
+}
+
+.problem,
+.services,
+.process,
+.faq,
+.plans {
+    background: #f7f9fc;
+}
+
+.solution,
+.cases,
+.instagram-section {
+    background: #ffffff;
+}
+
+.problem-card,
+.solution-point,
+.service-card,
+.case-card,
+.plan-card,
+.benefit,
+.process-step {
+    background: #ffffff;
+    border-color: var(--border);
+    box-shadow: var(--shadow);
+}
+
+.problem-card:hover,
+.service-card:hover,
+.case-card:hover {
+    background: #ffffff;
+    border-color: var(--border-blue);
+    box-shadow: 0 16px 38px rgba(11, 31, 51, 0.11);
+}
+
+.service-card.featured,
+.plan-card.popular {
+    background: #f1f8fe;
+    border-color: rgba(22, 131, 216, 0.35);
+    box-shadow: 0 14px 38px rgba(22, 131, 216, 0.10);
+}
+
+.problem-number,
+.service-number,
+.step-number,
+.benefit > span,
+.plan-label,
+.case-category {
+    color: var(--blue);
+}
+
+.problem-card::before {
+    background: var(--blue);
+}
+
+.plan-price {
+    color: var(--blue-dark);
+}
+
+.plan-card li,
+.service-card li {
+    color: var(--text);
+}
+
+.plan-card li::before {
+    color: var(--blue);
+}
+
+.case-image {
+    background: #eef4f8;
+}
+
+.case-link,
+.text-link {
+    color: var(--blue);
+}
+
+.case-link:hover,
+.text-link:hover {
+    color: var(--blue-dark);
+}
+
+.cases-grid {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 4px 4px 18px;
+    cursor: grab;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: var(--blue) var(--border);
+    scrollbar-width: thin;
+}
+
+.cases-grid.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+}
+
+.case-card {
+    flex: 0 0 min(720px, 72vw);
+    scroll-snap-align: start;
+}
+
+.cases-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cases-control {
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--blue-dark);
+    cursor: pointer;
+    font-size: 0.84rem;
+    font-weight: 800;
+    transition: transform var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.cases-control:hover {
+    transform: translateY(-2px);
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+.instagram-section {
+    border-top: 1px solid var(--border);
+}
+
+.instagram-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 18px 0;
+}
+
+.instagram-content h2 {
+    margin-bottom: 16px;
+    color: var(--text);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+}
+
+.instagram-content h2 span {
+    color: var(--blue);
+}
+
+.instagram-content p {
+    max-width: 660px;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.final-cta {
+    background: var(--blue-dark);
+    border-top-color: var(--blue-dark);
+}
+
+.final-cta p {
+    color: #b8c9d8;
+}
+
+.footer {
+    background: #071625;
+    border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.back-to-top {
+    background: #ffffff;
+    border-color: var(--border);
+    color: var(--blue-dark);
+}
+
+.back-to-top.visible {
+    background: #ffffff;
+    border-color: var(--blue);
+    box-shadow: 0 8px 22px rgba(22, 131, 216, 0.18);
+}
+
+.back-to-top:hover {
+    background: #f1f8fe;
+    border-color: var(--blue);
+}
+
+@media (max-width: 800px) {
+    .nav {
+        background: #ffffff;
+        border-color: var(--border);
+        box-shadow: 0 20px 45px rgba(11, 31, 51, 0.12);
+    }
+
+    .nav > a:not(.nav-cta) {
+        border-bottom-color: var(--border);
+    }
+
+    .menu-toggle {
+        background: #ffffff;
+        border-color: var(--border);
+    }
+
+    .menu-toggle span {
+        background: var(--blue-dark);
+    }
+
+    .cases-grid {
+        gap: 16px;
+        padding-bottom: 14px;
+    }
+
+    .case-card {
+        flex-basis: 86vw;
+    }
+
+    .cases-controls {
+        justify-content: space-between;
+    }
+
+    .instagram-content {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .instagram-content .btn {
+        width: 100%;
     }
 }

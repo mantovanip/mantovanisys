@@ -198,4 +198,70 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+
+  /* =========================
+     CARROSSEL DE PROJETOS
+  ========================= */
+
+  const casesGrid = document.querySelector(".cases-grid");
+  const casesControls = document.querySelectorAll(".cases-control");
+
+  if (casesGrid) {
+    casesControls.forEach((control) => {
+      control.addEventListener("click", () => {
+        const firstCard = casesGrid.querySelector(".case-card");
+        const gap = parseFloat(getComputedStyle(casesGrid).gap) || 0;
+        const distance = firstCard
+          ? firstCard.getBoundingClientRect().width + gap
+          : casesGrid.clientWidth;
+        const direction = control.dataset.direction === "previous" ? -1 : 1;
+
+        casesGrid.scrollBy({
+          left: distance * direction,
+          behavior: "smooth"
+        });
+      });
+    });
+
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+
+    casesGrid.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) {
+        return;
+      }
+
+      isDragging = true;
+      dragStartX = event.clientX;
+      dragStartScroll = casesGrid.scrollLeft;
+      casesGrid.setPointerCapture(event.pointerId);
+      casesGrid.classList.add("is-dragging");
+    });
+
+    casesGrid.addEventListener("pointermove", (event) => {
+      if (!isDragging) {
+        return;
+      }
+
+      casesGrid.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+    });
+
+    const stopDragging = (event) => {
+      if (!isDragging) {
+        return;
+      }
+
+      isDragging = false;
+      casesGrid.classList.remove("is-dragging");
+
+      if (casesGrid.hasPointerCapture(event.pointerId)) {
+        casesGrid.releasePointerCapture(event.pointerId);
+      }
+    };
+
+    casesGrid.addEventListener("pointerup", stopDragging);
+    casesGrid.addEventListener("pointercancel", stopDragging);
+  }
+
 });
