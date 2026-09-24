@@ -1,0 +1,16 @@
+{
+  "name": "MantovaniSys",
+  "short_name": "MantovaniSys",
+  "start_url": "../",
+  "display": "standalone",
+  "background_color": "#081a2d",
+  "theme_color": "#081a2d",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
