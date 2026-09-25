@@ -2210,3 +2210,230 @@ ul {
         padding: 20px;
     }
 }
+
+
+/* =========================================================
+   IDENTIDADE — INICIAIS GÓTICAS + OURO
+   ========================================================= */
+
+:root {
+    --gold: #d6b36a;
+    --gold-bright: #f0d18a;
+    --gold-soft: rgba(214,179,106,.18);
+}
+
+h1::first-letter,
+h2::first-letter,
+h3::first-letter,
+.hero .eyebrow::first-letter {
+    font-family: "UnifrakturCook", "Times New Roman", serif;
+    color: var(--gold-bright);
+    font-weight: 700;
+}
+
+.eyebrow,
+.problem-number,
+.point-icon,
+.case-category,
+.process-number,
+.plan-badge {
+    color: var(--gold-bright);
+}
+
+.eyebrow {
+    letter-spacing: .16em;
+}
+
+.section-heading p,
+.hero-trust span,
+.problem-card p,
+.solution-point p,
+.service-card p,
+.case-content p,
+.plan-description,
+.process-step p,
+.faq-answer p {
+    color: rgba(235,226,207,.78);
+}
+
+.text-link,
+.case-link,
+.faq-question:hover {
+    color: var(--gold-bright);
+}
+
+.btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold-bright);
+}
+
+/* =========================================================
+   NAVEGAÇÃO LATERAL — TELA INTEIRA
+   ========================================================= */
+
+.section-dots {
+    position: fixed;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+    padding: 12px 8px;
+    border: 1px solid rgba(214,179,106,.14);
+    border-radius: 999px;
+    background: rgba(5,16,28,.46);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.section-dot {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.section-dot::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.38);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.08);
+    transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.section-dot:hover::before {
+    transform: scale(1.35);
+    background: var(--gold);
+}
+
+.section-dot.active::before {
+    transform: scale(1.55);
+    background: var(--gold-bright);
+    box-shadow: 0 0 0 4px rgba(214,179,106,.13), 0 0 16px rgba(214,179,106,.28);
+}
+
+.section-dot span {
+    position: absolute;
+    left: 26px;
+    top: 50%;
+    width: max-content;
+    transform: translateY(-50%) translateX(-5px);
+    padding: 5px 8px;
+    border: 1px solid rgba(214,179,106,.18);
+    border-radius: 5px;
+    background: #081a2d;
+    color: #efe8db;
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.section-dot:hover span {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* =========================================================
+   PROJETOS — CARROSSEL INFINITO + SETAS PERSONALIZADAS
+   ========================================================= */
+
+.cases-carousel-wrap {
+    gap: 12px;
+}
+
+.cases-grid#casesTrack {
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+}
+
+.cases-nav {
+    position: relative;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(214,179,106,.35);
+    border-radius: 50%;
+    background: rgba(8,26,45,.88);
+    color: transparent;
+    box-shadow: 0 8px 24px rgba(0,0,0,.24), inset 0 0 0 1px rgba(255,255,255,.03);
+    cursor: pointer;
+    transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.cases-nav::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid var(--gold-bright);
+    border-right: 2px solid var(--gold-bright);
+    transform: translate(-35%,-50%) rotate(45deg);
+}
+
+.cases-prev::before {
+    transform: translate(-25%,-50%) rotate(-135deg);
+}
+
+.cases-nav:hover {
+    transform: translateY(-2px) scale(1.06);
+    border-color: var(--gold);
+    background: rgba(18,40,61,.98);
+    box-shadow: 0 12px 30px rgba(0,0,0,.3), 0 0 18px rgba(214,179,106,.1);
+}
+
+.cases-nav:active {
+    transform: scale(.96);
+}
+
+.cases-grid#casesTrack .case-frame {
+    border-color: rgba(214,179,106,.18);
+}
+
+.cases-grid#casesTrack .case-card:hover .case-frame {
+    border-color: rgba(214,179,106,.42);
+}
+
+@media (max-width: 1100px) {
+    .section-dots {
+        left: 10px;
+    }
+}
+
+@media (max-width: 800px) {
+    .section-dots {
+        left: 8px;
+        gap: 9px;
+        padding: 8px 5px;
+        background: rgba(5,16,28,.34);
+    }
+
+    .section-dot {
+        width: 14px;
+        height: 14px;
+    }
+
+    .section-dot::before {
+        inset: 4px;
+    }
+
+    .section-dot span {
+        display: none;
+    }
+
+    .cases-nav {
+        display: none;
+    }
+}
