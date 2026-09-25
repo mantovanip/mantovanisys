@@ -677,3 +677,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (initialLanguage !== "pt") translatePage(initialLanguage);
     else languageButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.classList.contains("active"))));
+
+});
