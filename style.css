@@ -3054,14 +3054,14 @@ h3::first-letter {
 
 
 /* =========================================================
-   ANDROID — MODO RESPONSIVO FORÇADO
+   ANDROID — MOBILE REAL MESMO NO "SITE PARA COMPUTADOR"
    ========================================================= */
 
 /*
- * O Chrome Android pode abrir o site em um viewport de desktop.
- * A interface continua usando exatamente a estrutura mobile.
- * O conteúdo é mantido em uma largura-base de 390px e ampliado
- * proporcionalmente para ocupar a largura disponível.
+ * O Chrome Android pode fornecer um viewport CSS de desktop quando
+ * "Site para computador" está ativo. Neste modo não usamos o viewport
+ * para decidir a estrutura: reproduzimos diretamente o mesmo layout
+ * usado pelo @media (max-width: 800px) do site.
  */
 html.android-mobile-mode,
 html.android-mobile-mode body {
@@ -3075,15 +3075,19 @@ html.android-mobile-mode body {
     touch-action: pan-x pan-y;
 }
 
-html.android-mobile-mode .header {
-    width: 100%;
-    height: 72px;
+html.android-mobile-mode .container {
+    width: calc(100% - 32px) !important;
+    max-width: var(--container) !important;
+    min-width: 0 !important;
 }
 
-html.android-mobile-mode .container {
-    width: calc(100% - 32px);
-    max-width: none;
-    min-width: 0;
+html.android-mobile-mode .section {
+    padding: 90px 0;
+}
+
+/* Header */
+html.android-mobile-mode .header {
+    height: 72px;
 }
 
 html.android-mobile-mode .logo {
@@ -3099,16 +3103,30 @@ html.android-mobile-mode .nav {
     top: 72px;
     right: 16px;
     left: 16px;
+
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
+
     width: auto;
     max-width: none;
     padding: 10px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    background: rgba(8, 26, 45, 0.98);
+    box-shadow: var(--shadow);
+
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
+
+    transition:
+        opacity var(--transition),
+        visibility var(--transition),
+        transform var(--transition);
 }
 
 html.android-mobile-mode .nav.active {
@@ -3119,17 +3137,38 @@ html.android-mobile-mode .nav.active {
 
 html.android-mobile-mode .nav > a:not(.nav-cta) {
     padding: 14px 12px;
-    font-size: .9rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
 }
 
+html.android-mobile-mode .nav > a:not(.nav-cta):hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+html.android-mobile-mode .nav-cta {
+    margin-top: 8px;
+}
+
+/* Idiomas */
 html.android-mobile-mode .language-switcher {
     position: absolute;
     right: 112px;
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
+    padding: 2px;
+    gap: 1px;
+    background: rgba(5,16,28,.72);
 }
 
+html.android-mobile-mode .language-btn {
+    min-width: 29px;
+    height: 26px;
+    padding: 0 6px;
+    font-size: .58rem;
+}
+
+/* Hero */
 html.android-mobile-mode .hero {
     min-height: auto;
     padding: 125px 0 80px;
@@ -3149,7 +3188,7 @@ html.android-mobile-mode .hero h1 {
 }
 
 html.android-mobile-mode .hero-description {
-    font-size: .98rem;
+    font-size: 0.98rem;
 }
 
 html.android-mobile-mode .hero-actions {
@@ -3180,10 +3219,10 @@ html.android-mobile-mode .browser-content {
     padding: 38px 28px;
 }
 
+/* Grids */
 html.android-mobile-mode .problem-grid,
 html.android-mobile-mode .services-grid,
-html.android-mobile-mode .plans-grid,
-html.android-mobile-mode .process-grid {
+html.android-mobile-mode .plans-grid {
     grid-template-columns: 1fr;
 }
 
@@ -3193,10 +3232,10 @@ html.android-mobile-mode .plan-card {
     padding: 28px;
 }
 
+/* Solution / Benefits / FAQ */
 html.android-mobile-mode .solution-grid,
 html.android-mobile-mode .benefits-grid,
-html.android-mobile-mode .faq-container,
-html.android-mobile-mode .diagnostic-grid {
+html.android-mobile-mode .faq-container {
     grid-template-columns: 1fr;
     gap: 50px;
 }
@@ -3206,6 +3245,7 @@ html.android-mobile-mode .benefits-heading h2 {
     font-size: clamp(2rem, 9vw, 3rem);
 }
 
+/* Projects */
 html.android-mobile-mode .cases-carousel-wrap {
     display: block;
 }
@@ -3216,33 +3256,40 @@ html.android-mobile-mode .cases-grid#casesTrack {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
-    gap: 16px;
-    padding: 12px 9% 28px 2px;
+    gap: 20px;
+    padding: 4px 8% 10px 0;
 }
 
 html.android-mobile-mode .cases-grid::-webkit-scrollbar {
     display: none;
 }
 
-html.android-mobile-mode .cases-grid#casesTrack .case-card,
-html.android-mobile-mode .case-card {
+html.android-mobile-mode .case-card,
+html.android-mobile-mode .cases-grid#casesTrack .case-card {
     flex: 0 0 88%;
-    max-width: 88%;
+    max-width: none;
     scroll-snap-align: start;
-}
-
-html.android-mobile-mode .cases-grid#casesTrack .case-content {
-    padding: 20px;
 }
 
 html.android-mobile-mode .cases-nav {
     display: none;
 }
 
+/* Plans */
+html.android-mobile-mode .plan-description {
+    min-height: auto;
+}
+
+/* Process */
+html.android-mobile-mode .process-grid {
+    grid-template-columns: 1fr 1fr;
+}
+
 html.android-mobile-mode .process-step:not(:last-child)::after {
     display: none;
 }
 
+/* Footer */
 html.android-mobile-mode .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: 45px;
@@ -3252,10 +3299,7 @@ html.android-mobile-mode .footer-brand {
     grid-column: 1 / -1;
 }
 
-html.android-mobile-mode .diagnostic-content h2 {
-    font-size: clamp(1.8rem, 7vw, 2.5rem);
-}
-
+/* Proof / diagnostic */
 html.android-mobile-mode .proof-strip {
     margin-top: 0;
 }
@@ -3276,36 +3320,119 @@ html.android-mobile-mode .proof-grid > div {
     padding: 16px 18px;
 }
 
+html.android-mobile-mode .diagnostic-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+}
+
+html.android-mobile-mode .diagnostic-content h2 {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+}
+
 html.android-mobile-mode .section-dots {
     display: none !important;
 }
 
-/*
- * Quando o Android estiver realmente em largura de celular,
- * estas regras deixam o resultado idêntico ao mobile normal.
- */
-@media (max-width: 500px) {
-    html.android-mobile-mode .section { padding: 78px 0; }
-    html.android-mobile-mode .hero h1 { font-size: 2.55rem; }
-    html.android-mobile-mode .browser-content { min-height: 300px; padding: 32px 22px; }
-    html.android-mobile-mode .problem-card,
-    html.android-mobile-mode .service-card,
-    html.android-mobile-mode .plan-card { padding: 24px; }
-    html.android-mobile-mode .solution-point { grid-template-columns: 45px 1fr; padding: 20px; }
-    html.android-mobile-mode .benefit { grid-template-columns: 35px 1fr; padding: 20px; }
-    html.android-mobile-mode .process-grid { grid-template-columns: 1fr; }
-    html.android-mobile-mode .case-card { flex-basis: 92%; }
-    html.android-mobile-mode .case-content { padding: 24px; }
-    html.android-mobile-mode .footer-grid { grid-template-columns: 1fr; gap: 38px; }
-    html.android-mobile-mode .footer-brand { grid-column: auto; }
-    html.android-mobile-mode .floating-whatsapp {
-        right: 14px; bottom: 14px; width: 44px; height: 44px; min-height: 44px; padding: 0; opacity: .62;
-    }
-    html.android-mobile-mode .floating-whatsapp span { display: none; }
-    html.android-mobile-mode .language-switcher { right: 96px; }
+/* Mobile small-screen refinements are also forced in desktop mode. */
+html.android-mobile-mode .section {
+    padding: 78px 0;
 }
 
-/* Bloqueio de zoom por toque e por controles do navegador */
-html, body {
+html.android-mobile-mode .section-heading {
+    margin-bottom: 36px;
+}
+
+html.android-mobile-mode .section-heading h2 {
+    font-size: 2rem;
+}
+
+html.android-mobile-mode .hero h1 {
+    font-size: 2.55rem;
+}
+
+html.android-mobile-mode .browser-content {
+    min-height: 300px;
+    padding: 32px 22px;
+}
+
+html.android-mobile-mode .mock-logo {
+    margin-bottom: 24px;
+}
+
+html.android-mobile-mode .mock-title {
+    font-size: 2rem;
+}
+
+html.android-mobile-mode .problem-card,
+html.android-mobile-mode .service-card,
+html.android-mobile-mode .plan-card {
+    padding: 24px;
+}
+
+html.android-mobile-mode .solution-point {
+    grid-template-columns: 45px 1fr;
+    padding: 20px;
+}
+
+html.android-mobile-mode .benefit {
+    grid-template-columns: 35px 1fr;
+    padding: 20px;
+}
+
+html.android-mobile-mode .process-grid {
+    grid-template-columns: 1fr;
+}
+
+html.android-mobile-mode .case-card {
+    flex-basis: 92%;
+}
+
+html.android-mobile-mode .case-content {
+    padding: 24px;
+}
+
+html.android-mobile-mode .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+}
+
+html.android-mobile-mode .footer-brand {
+    grid-column: auto;
+}
+
+html.android-mobile-mode .floating-whatsapp {
+    right: 14px;
+    bottom: 14px;
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0;
+    opacity: .62;
+}
+
+html.android-mobile-mode .floating-whatsapp span {
+    display: none;
+}
+
+html.android-mobile-mode .language-switcher {
+    right: 96px;
+}
+
+/* Prevent the page itself from creating a desktop-width canvas. */
+html.android-mobile-mode * {
+    min-width: 0;
+}
+
+html.android-mobile-mode .hero-grid,
+html.android-mobile-mode .solution-grid,
+html.android-mobile-mode .benefits-grid,
+html.android-mobile-mode .faq-container,
+html.android-mobile-mode .diagnostic-grid {
+    width: 100%;
+}
+
+/* Zoom prevention */
+html,
+body {
     touch-action: pan-x pan-y;
 }
