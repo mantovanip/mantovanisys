@@ -323,4 +323,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+
+    /* =========================================================
+       PROJETOS — CARROSSEL + REVEAL
+       ========================================================= */
+
+    const casesTrack = document.getElementById("casesTrack");
+    const casesPrev = document.querySelector(".cases-prev");
+    const casesNext = document.querySelector(".cases-next");
+
+    if (casesTrack) {
+        const caseCards = [...casesTrack.querySelectorAll(".case-card")];
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("case-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.16 });
+            caseCards.forEach((card) => observer.observe(card));
+        } else {
+            caseCards.forEach((card) => card.classList.add("case-visible"));
+        }
+
+        const moveCases = (direction) => {
+            const amount = Math.min(casesTrack.clientWidth * 0.82, 560);
+            casesTrack.scrollBy({ left: direction * amount, behavior: "smooth" });
+        };
+
+        casesPrev?.addEventListener("click", () => moveCases(-1));
+        casesNext?.addEventListener("click", () => moveCases(1));
+
+        let dragging = false;
+        let startX = 0;
+        let startScroll = 0;
+
+        casesTrack.addEventListener("pointerdown", (event) => {
+            if (event.pointerType === "mouse" && event.button !== 0) return;
+            dragging = true;
+            startX = event.clientX;
+            startScroll = casesTrack.scrollLeft;
+            casesTrack.classList.add("is-dragging");
+            casesTrack.setPointerCapture?.(event.pointerId);
+        });
+
+        casesTrack.addEventListener("pointermove", (event) => {
+            if (!dragging) return;
+            casesTrack.scrollLeft = startScroll - (event.clientX - startX);
+        });
+
+        const stopDragging = () => {
+            dragging = false;
+            casesTrack.classList.remove("is-dragging");
+        };
+
+        casesTrack.addEventListener("pointerup", stopDragging);
+        casesTrack.addEventListener("pointercancel", stopDragging);
+        casesTrack.addEventListener("lostpointercapture", stopDragging);
+    }
+
 });
