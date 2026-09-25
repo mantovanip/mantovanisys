@@ -2202,342 +2202,9 @@ ul {
         scroll-snap-align: start;
     }
 
-    .cases-nav {
-        display: none;
-    }
-
     .cases-grid#casesTrack .case-content {
         padding: 20px;
     }
-}
-
-
-/* =========================================================
-   IDENTIDADE — INICIAIS GÓTICAS + OURO
-   ========================================================= */
-
-:root {
-    --gold: #d6b36a;
-    --gold-bright: #f0d18a;
-    --gold-soft: rgba(214,179,106,.18);
-}
-
-h1::first-letter,
-h2::first-letter,
-h3::first-letter,
-.hero .eyebrow::first-letter {
-    font-family: "Cinzel", "Times New Roman", serif;
-    color: var(--gold-bright);
-    font-weight: 700;
-}
-
-.eyebrow,
-.problem-number,
-.point-icon,
-.case-category,
-.process-number,
-.plan-badge {
-    color: var(--gold-bright);
-}
-
-.eyebrow {
-    letter-spacing: .16em;
-}
-
-.section-heading p,
-.hero-trust span,
-.problem-card p,
-.solution-point p,
-.service-card p,
-.case-content p,
-.plan-description,
-.process-step p,
-.faq-answer p {
-    color: rgba(235,226,207,.78);
-}
-
-.text-link,
-.case-link,
-.faq-question:hover {
-    color: var(--gold-bright);
-}
-
-.btn-secondary:hover {
-    border-color: var(--gold);
-    color: var(--gold-bright);
-}
-
-/* =========================================================
-   NAVEGAÇÃO LATERAL — TELA INTEIRA
-   ========================================================= */
-
-.section-dots {
-    position: fixed;
-    left: 22px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 900;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 13px;
-    padding: 12px 8px;
-    border: 1px solid rgba(214,179,106,.14);
-    border-radius: 999px;
-    background: rgba(5,16,28,.46);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-
-.section-dot {
-    position: relative;
-    width: 18px;
-    height: 18px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-}
-
-.section-dot::before {
-    content: "";
-    position: absolute;
-    inset: 5px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.38);
-    box-shadow: 0 0 0 1px rgba(255,255,255,.08);
-    transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
-}
-
-.section-dot:hover::before {
-    transform: scale(1.35);
-    background: var(--gold);
-}
-
-.section-dot.active::before {
-    transform: scale(1.55);
-    background: var(--gold-bright);
-    box-shadow: 0 0 0 4px rgba(214,179,106,.13), 0 0 16px rgba(214,179,106,.28);
-}
-
-.section-dot span {
-    position: absolute;
-    left: 26px;
-    top: 50%;
-    width: max-content;
-    transform: translateY(-50%) translateX(-5px);
-    padding: 5px 8px;
-    border: 1px solid rgba(214,179,106,.18);
-    border-radius: 5px;
-    background: #081a2d;
-    color: #efe8db;
-    font-size: .68rem;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .2s ease, transform .2s ease;
-}
-
-.section-dot:hover span {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
-}
-
-/* =========================================================
-   PROJETOS — CARROSSEL INFINITO + SETAS PERSONALIZADAS
-   ========================================================= */
-
-.cases-carousel-wrap {
-    gap: 12px;
-}
-
-.cases-grid#casesTrack {
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-}
-
-.cases-nav {
-    position: relative;
-    flex: 0 0 48px;
-    width: 48px;
-    height: 48px;
-    border: 1px solid rgba(214,179,106,.35);
-    border-radius: 50%;
-    background: rgba(8,26,45,.88);
-    color: transparent;
-    box-shadow: 0 8px 24px rgba(0,0,0,.24), inset 0 0 0 1px rgba(255,255,255,.03);
-    cursor: pointer;
-    transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
-}
-
-.cases-nav::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 10px;
-    height: 10px;
-    border-top: 2px solid var(--gold-bright);
-    border-right: 2px solid var(--gold-bright);
-    transform: translate(-35%,-50%) rotate(45deg);
-}
-
-.cases-prev::before {
-    transform: translate(-25%,-50%) rotate(-135deg);
-}
-
-.cases-nav:hover {
-    transform: translateY(-2px) scale(1.06);
-    border-color: var(--gold);
-    background: rgba(18,40,61,.98);
-    box-shadow: 0 12px 30px rgba(0,0,0,.3), 0 0 18px rgba(214,179,106,.1);
-}
-
-.cases-nav:active {
-    transform: scale(.96);
-}
-
-.cases-grid#casesTrack .case-frame {
-    border-color: rgba(214,179,106,.18);
-}
-
-.cases-grid#casesTrack .case-card:hover .case-frame {
-    border-color: rgba(214,179,106,.42);
-}
-
-@media (max-width: 1100px) {
-    .section-dots {
-        left: 10px;
-    }
-}
-
-@media (max-width: 800px) {
-    .section-dots {
-        left: 8px;
-        gap: 9px;
-        padding: 8px 5px;
-        background: rgba(5,16,28,.34);
-    }
-
-    .section-dot {
-        width: 14px;
-        height: 14px;
-    }
-
-    .section-dot::before {
-        inset: 4px;
-    }
-
-    .section-dot span {
-        display: none;
-    }
-
-    .cases-nav {
-        display: none;
-    }
-}
-
-
-/* =========================================================
-   AJUSTE DE CONTRASTE — PALETA GÓTICA / METALLIC NIGHT
-   ========================================================= */
-
-:root {
-    --gold: #c7a86b;
-    --gold-bright: #e0c78a;
-    --gold-soft: rgba(199,168,107,.16);
-    --ink-light: #e8edf2;
-    --ink-muted: #aeb9c5;
-}
-
-/* Ouro somente em elementos de destaque, nunca no texto corrido */
-.eyebrow,
-.problem-number,
-.point-icon,
-.case-category,
-.process-number,
-.plan-badge,
-.text-link,
-.case-link {
-    color: var(--gold-bright);
-}
-
-.section-heading h2,
-.solution-content h2,
-.benefits-heading h2,
-.service-card h3,
-.problem-card h3,
-.solution-point h3,
-.case-content h3,
-.plan-card h3,
-.process-step h3,
-.faq-question {
-    color: var(--ink-light);
-}
-
-.section-heading p,
-.hero-description,
-.hero-trust span,
-.problem-card p,
-.solution-point p,
-.service-card p,
-.case-content p,
-.plan-description,
-.process-step p,
-.faq-answer p {
-    color: var(--ink-muted);
-}
-
-/* Inicial gótica com contraste controlado */
-h1::first-letter,
-h2::first-letter,
-h3::first-letter {
-    font-family: "Cinzel", "Times New Roman", serif;
-    color: var(--gold-bright);
-    text-shadow: 0 0 14px rgba(199,168,107,.12);
-}
-
-/* CTAs continuam claros para leitura imediata */
-.btn-primary {
-    color: #071321;
-    background: var(--gold-bright);
-}
-
-.btn-primary:hover {
-    color: #071321;
-    background: #f0dcae;
-}
-
-/* Pontos laterais */
-.section-dots {
-    border-color: rgba(199,168,107,.16);
-    background: rgba(5,16,28,.72);
-}
-
-.section-dot::before {
-    background: rgba(232,237,242,.48);
-}
-
-.section-dot:hover::before,
-.section-dot.active::before {
-    background: var(--gold-bright);
-}
-
-/* Setas */
-.cases-nav {
-    border-color: rgba(199,168,107,.34);
-}
-
-.cases-nav::before {
-    border-color: var(--gold-bright);
-}
-
-/* Destaques curtos */
-.hero-trust strong,
-.mock-logo,
-.mock-title span {
-    color: var(--gold-bright);
 }
 
 
@@ -2632,9 +2299,13 @@ h3::first-letter {
 
 .proof-strip {
     position: relative;
+    z-index: 5;
+    margin-top: -54px;
     border-top: 1px solid rgba(199,168,107,.12);
     border-bottom: 1px solid rgba(199,168,107,.12);
-    background: rgba(5,16,28,.72);
+    background: rgba(5,16,28,.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .proof-grid {
@@ -2695,3 +2366,403 @@ h3::first-letter {
         padding: 16px 18px;
     }
 }
+
+
+/* =========================================================
+   IDENTIDADE FINAL — METALLIC NIGHT + OURO
+   ========================================================= */
+
+:root {
+    --gold: #c7a86b;
+    --gold-bright: #e0c78a;
+    --gold-soft: rgba(199,168,107,.16);
+    --ink-light: #e8edf2;
+    --ink-muted: #aeb9c5;
+}
+
+h1::first-letter,
+h2::first-letter,
+h3::first-letter {
+    font-family: "Cinzel", "Times New Roman", serif;
+    color: var(--gold-bright);
+    text-shadow: 0 0 14px rgba(199,168,107,.12);
+}
+
+.eyebrow,
+.problem-number,
+.point-icon,
+.case-category,
+.process-number,
+.plan-badge,
+.text-link,
+.case-link {
+    color: var(--gold-bright);
+}
+
+.eyebrow {
+    letter-spacing: .16em;
+}
+
+.section-heading h2,
+.solution-content h2,
+.benefits-heading h2,
+.service-card h3,
+.problem-card h3,
+.solution-point h3,
+.case-content h3,
+.plan-card h3,
+.process-step h3,
+.faq-question {
+    color: var(--ink-light);
+}
+
+.section-heading p,
+.hero-description,
+.hero-trust span,
+.problem-card p,
+.solution-point p,
+.service-card p,
+.case-content p,
+.plan-description,
+.process-step p,
+.faq-answer p {
+    color: var(--ink-muted);
+}
+
+.btn-primary {
+    color: #071321;
+    background: var(--gold-bright);
+}
+
+.btn-primary:hover {
+    color: #071321;
+    background: #f0dcae;
+}
+
+.hero-trust strong,
+.mock-logo,
+.mock-title span {
+    color: var(--gold-bright);
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO LATERAL
+   ========================================================= */
+
+.section-dots {
+    position: fixed;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+    padding: 12px 8px;
+    border: 1px solid rgba(199,168,107,.16);
+    border-radius: 999px;
+    background: rgba(5,16,28,.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.section-dot {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.section-dot::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: rgba(232,237,242,.48);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.08);
+    transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.section-dot:hover::before,
+.section-dot.active::before {
+    background: var(--gold-bright);
+}
+
+.section-dot:hover::before {
+    transform: scale(1.35);
+}
+
+.section-dot.active::before {
+    transform: scale(1.55);
+    box-shadow: 0 0 0 4px rgba(199,168,107,.13), 0 0 16px rgba(199,168,107,.28);
+}
+
+.section-dot span {
+    position: absolute;
+    left: 26px;
+    top: 50%;
+    width: max-content;
+    transform: translateY(-50%) translateX(-5px);
+    padding: 5px 8px;
+    border: 1px solid rgba(199,168,107,.18);
+    border-radius: 5px;
+    background: #081a2d;
+    color: #efe8db;
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.section-dot:hover span {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+
+/* =========================================================
+   PROJETOS — SETAS
+   ========================================================= */
+
+.cases-carousel-wrap {
+    gap: 12px;
+}
+
+.cases-grid#casesTrack {
+    overscroll-behavior-x: contain;
+}
+
+.cases-nav {
+    position: relative;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(199,168,107,.34);
+    border-radius: 50%;
+    background: rgba(8,26,45,.88);
+    color: transparent;
+    box-shadow: 0 8px 24px rgba(0,0,0,.24), inset 0 0 0 1px rgba(255,255,255,.03);
+    cursor: pointer;
+    transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.cases-nav::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid var(--gold-bright);
+    border-right: 2px solid var(--gold-bright);
+    transform: translate(-35%,-50%) rotate(45deg);
+}
+
+.cases-prev::before {
+    transform: translate(-25%,-50%) rotate(-135deg);
+}
+
+.cases-nav:hover {
+    transform: translateY(-2px) scale(1.06);
+    border-color: var(--gold);
+    background: rgba(18,40,61,.98);
+    box-shadow: 0 12px 30px rgba(0,0,0,.3), 0 0 18px rgba(199,168,107,.1);
+}
+
+.cases-nav:active {
+    transform: scale(.96);
+}
+
+
+/* =========================================================
+   DIAGNÓSTICO
+   ========================================================= */
+
+.diagnostic {
+    position: relative;
+    overflow: hidden;
+}
+
+.diagnostic::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 50%, rgba(199,168,107,.08), transparent 34%),
+        linear-gradient(90deg, rgba(199,168,107,.025), transparent 55%);
+    pointer-events: none;
+}
+
+.diagnostic-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+    gap: 70px;
+    align-items: center;
+}
+
+.diagnostic-content h2 {
+    max-width: 780px;
+    margin: 14px 0 20px;
+    color: var(--ink-light);
+}
+
+.diagnostic-content h2 span {
+    color: var(--gold-bright);
+}
+
+.diagnostic-content p {
+    max-width: 680px;
+    margin: 0 0 30px;
+    color: var(--ink-muted);
+    line-height: 1.8;
+}
+
+.diagnostic-list {
+    display: grid;
+    gap: 1px;
+    border: 1px solid rgba(199,168,107,.16);
+    background: rgba(199,168,107,.08);
+}
+
+.diagnostic-list div {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-height: 76px;
+    padding: 18px 22px;
+    background: rgba(5,16,28,.72);
+}
+
+.diagnostic-list strong {
+    min-width: 28px;
+    color: var(--gold-bright);
+    font-family: "Cinzel", "Times New Roman", serif;
+    font-size: .85rem;
+}
+
+.diagnostic-list span {
+    color: var(--ink-light);
+    font-size: .95rem;
+}
+
+
+/* =========================================================
+   PROVA / POSICIONAMENTO
+   ========================================================= */
+
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    min-height: 108px;
+}
+
+.proof-grid > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 18px 28px;
+    border-right: 1px solid rgba(199,168,107,.10);
+}
+
+.proof-grid > div:last-child {
+    border-right: 0;
+}
+
+.proof-grid strong {
+    color: var(--gold-bright);
+    font-family: "Cinzel", "Times New Roman", serif;
+    font-size: 1.05rem;
+    letter-spacing: .03em;
+}
+
+.proof-grid span {
+    color: var(--ink-muted);
+    font-size: .78rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
+
+.diagnostic .eyebrow {
+    margin-bottom: 6px;
+}
+
+.diagnostic-content .btn {
+    min-width: 240px;
+}
+
+
+/* =========================================================
+   RESPONSIVE — AJUSTES FINAIS
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    .section-dots {
+        left: 10px;
+    }
+}
+
+@media (max-width: 800px) {
+    .section-dots {
+        left: 8px;
+        gap: 9px;
+        padding: 8px 5px;
+        background: rgba(5,16,28,.34);
+    }
+
+    .section-dot {
+        width: 14px;
+        height: 14px;
+    }
+
+    .section-dot::before {
+        inset: 4px;
+    }
+
+    .section-dot span {
+        display: none;
+    }
+
+    .proof-strip {
+        margin-top: 0;
+    }
+
+    .proof-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .proof-grid > div:nth-child(2) {
+        border-right: 0;
+    }
+
+    .proof-grid > div:nth-child(-n+2) {
+        border-bottom: 1px solid rgba(199,168,107,.10);
+    }
+
+    .proof-grid > div {
+        padding: 16px 18px;
+    }
+
+    .diagnostic-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .diagnostic-content h2 {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    .cases-nav {
+        display: none;
+    }
+}
+
