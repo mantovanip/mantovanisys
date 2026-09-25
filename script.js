@@ -603,8 +603,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const originalText = new WeakMap();
 
     const translatePage = (lang) => {
-        const dictionary = translations[lang];
-        if (!dictionary) return;
+        const dictionary = translations[lang] || {};
+        if (!["pt","en","es"].includes(lang)) return;
 
         document.documentElement.lang = lang === "pt" ? "pt-BR" : lang;
 
