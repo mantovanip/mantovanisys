@@ -3051,3 +3051,135 @@ h3::first-letter {
         overflow-x: hidden;
     }
 }
+
+
+/* =========================================================
+   ANDROID — MODO RESPONSIVO FORÇADO
+   ========================================================= */
+
+/*
+ * O Chrome Android pode aumentar o viewport ao ativar "Site para computador".
+ * Nesse cenário, os breakpoints baseados somente em largura deixam de entrar
+ * no modo mobile. A classe aplicada pelo JS mantém a interface mobile
+ * enquanto o aparelho continuar sendo Android/touch.
+ */
+html.android-mobile-mode .container {
+    width: min(92%, 1180px);
+    max-width: 1180px;
+}
+
+html.android-mobile-mode .header .nav-container {
+    min-height: 72px;
+}
+
+html.android-mobile-mode .menu-toggle {
+    display: flex;
+}
+
+html.android-mobile-mode .nav {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    display: none;
+    width: 100%;
+    max-width: none;
+    flex-direction: column;
+}
+
+html.android-mobile-mode .nav.active {
+    display: flex;
+}
+
+html.android-mobile-mode .language-switcher {
+    position: absolute;
+    right: 104px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+
+html.android-mobile-mode .hero-grid,
+html.android-mobile-mode .solution-grid,
+html.android-mobile-mode .diagnostic-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+}
+
+html.android-mobile-mode .hero {
+    min-height: auto;
+}
+
+html.android-mobile-mode .hero-content h1 {
+    font-size: clamp(2.2rem, 7vw, 4rem);
+}
+
+html.android-mobile-mode .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+html.android-mobile-mode .hero-actions .btn {
+    width: 100%;
+}
+
+html.android-mobile-mode .hero-visual {
+    margin-top: 10px;
+}
+
+html.android-mobile-mode .problem-grid,
+html.android-mobile-mode .services-grid,
+html.android-mobile-mode .benefits-grid,
+html.android-mobile-mode .process-grid {
+    grid-template-columns: 1fr;
+}
+
+html.android-mobile-mode .plans-grid {
+    grid-template-columns: 1fr;
+}
+
+html.android-mobile-mode .cases-carousel-wrap {
+    display: block;
+}
+
+html.android-mobile-mode .cases-nav {
+    display: none;
+}
+
+html.android-mobile-mode .cases-grid#casesTrack {
+    gap: 16px;
+    padding: 12px 9% 28px 2px;
+    scroll-snap-type: x mandatory;
+}
+
+html.android-mobile-mode .cases-grid#casesTrack .case-card {
+    flex: 0 0 88%;
+    max-width: 88%;
+    scroll-snap-align: start;
+}
+
+html.android-mobile-mode .proof-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+html.android-mobile-mode .proof-grid > div:nth-child(2) {
+    border-right: 0;
+}
+
+html.android-mobile-mode .proof-grid > div:nth-child(-n+2) {
+    border-bottom: 1px solid rgba(199,168,107,.10);
+}
+
+html.android-mobile-mode .diagnostic-content h2 {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+}
+
+html.android-mobile-mode .section-dots {
+    display: none !important;
+}
+
+@media (max-width: 420px) {
+    html.android-mobile-mode .language-switcher {
+        right: 96px;
+    }
+}
