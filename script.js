@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       PROJETOS — CARROSSEL + REVEAL
+       PROJETOS — CARROSSEL INFINITO
        ========================================================= */
 
     const casesTrack = document.getElementById("casesTrack");
@@ -333,8 +333,67 @@ document.addEventListener("DOMContentLoaded", () => {
     const casesNext = document.querySelector(".cases-next");
 
     if (casesTrack) {
-        const caseCards = [...casesTrack.querySelectorAll(".case-card")];
+        const originalCards = [...casesTrack.querySelectorAll(".case-card")];
+        const count = originalCards.length;
 
+        // Clones nas duas pontas criam a sensação de carrossel infinito.
+        const before = originalCards.map((card) => card.cloneNode(true)).reverse();
+        const after = originalCards.map((card) => card.cloneNode(true));
+
+        before.forEach((card) => casesTrack.insertBefore(card, casesTrack.firstChild));
+        after.forEach((card) => casesTrack.appendChild(card));
+
+        const getStep = () => {
+            const card = casesTrack.querySelector(".case-card");
+            if (!card) return 0;
+            const styles = getComputedStyle(casesTrack);
+            return card.getBoundingClientRect().width + parseFloat(styles.columnGap || styles.gap || 0);
+        };
+
+        const jumpToMiddle = () => {
+            const step = getStep();
+            if (step) {
+                casesTrack.scrollLeft = step * count;
+            }
+        };
+
+        requestAnimationFrame(jumpToMiddle);
+
+        const moveCases = (direction) => {
+            const step = getStep();
+            if (step) {
+                casesTrack.scrollBy({
+                    left: direction * step,
+                    behavior: "smooth"
+                });
+            }
+        };
+
+        casesPrev?.addEventListener("click", () => moveCases(-1));
+        casesNext?.addEventListener("click", () => moveCases(1));
+
+        let correcting = false;
+        casesTrack.addEventListener("scroll", () => {
+            if (correcting) return;
+
+            const step = getStep();
+            if (!step) return;
+
+            const min = step * 0.75;
+            const max = step * (count * 2 + 0.25);
+
+            if (casesTrack.scrollLeft <= min) {
+                correcting = true;
+                casesTrack.scrollLeft += step * count;
+                requestAnimationFrame(() => { correcting = false; });
+            } else if (casesTrack.scrollLeft >= max) {
+                correcting = true;
+                casesTrack.scrollLeft -= step * count;
+                requestAnimationFrame(() => { correcting = false; });
+            }
+        }, { passive: true });
+
+        // Entrada suave dos projetos.
         if ("IntersectionObserver" in window) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
@@ -343,22 +402,61 @@ document.addEventListener("DOMContentLoaded", () => {
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.16 });
-            caseCards.forEach((card) => observer.observe(card));
+            }, { threshold: 0.12 });
+
+            casesTrack.querySelectorAll(".case-card").forEach((card) => observer.observe(card));
         } else {
-            caseCards.forEach((card) => card.classList.add("case-visible"));
+            casesTrack.querySelectorAll(".case-card").forEach((card) => card.classList.add("case-visible"));
         }
 
-        const moveCases = (direction) => {
-            const amount = Math.min(casesTrack.clientWidth * 0.82, 560);
-            casesTrack.scrollBy({ left: direction * amount, behavior: "smooth" });
-        };
+        window.addEventListener("resize", () => {
+            const step = getStep();
+            if (step) {
+                casesTrack.scrollLeft = step * count;
+            }
+        });
+    }
 
-        casesPrev?.addEventListener("click", () => moveCases(-1));
-        casesNext?.addEventListener("click", () => moveCases(1));
+    /* =========================================================
+       NAVEGAÇÃO LATERAL — PONTOS POR SEÇÃO
+       ========================================================= */
 
-        // Mobile uses native touch scrolling. Desktop uses the arrow controls.
-        // Keeping links free of pointer-capture guarantees every project button remains clickable.
+    const sectionDots = [...document.querySelectorAll(".section-dot")];
+    const sections = sectionDots
+        .map((dot) => document.getElementById(dot.dataset.section))
+        .filter(Boolean);
+
+    const activateSectionDot = (id) => {
+        sectionDots.forEach((dot) => {
+            const active = dot.dataset.section === id;
+            dot.classList.toggle("active", active);
+            dot.setAttribute("aria-current", active ? "true" : "false");
+        });
+    };
+
+    sectionDots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+            const target = document.getElementById(dot.dataset.section);
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+                activateSectionDot(dot.dataset.section);
+            }
+        });
+    });
+
+    if ("IntersectionObserver" in window && sections.length) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            const visible = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+            if (visible) activateSectionDot(visible.target.id);
+        }, {
+            rootMargin: "-25% 0px -55% 0px",
+            threshold: [0.1, 0.25, 0.5, 0.75]
+        });
+
+        sections.forEach((section) => sectionObserver.observe(section));
     }
 
 });
