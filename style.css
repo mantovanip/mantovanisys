@@ -2624,3 +2624,74 @@ h3::first-letter {
         font-size: clamp(1.8rem, 7vw, 2.5rem);
     }
 }
+
+
+/* =========================================================
+   PROVA / POSICIONAMENTO
+   ========================================================= */
+
+.proof-strip {
+    position: relative;
+    border-top: 1px solid rgba(199,168,107,.12);
+    border-bottom: 1px solid rgba(199,168,107,.12);
+    background: rgba(5,16,28,.72);
+}
+
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    min-height: 108px;
+}
+
+.proof-grid > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 18px 28px;
+    border-right: 1px solid rgba(199,168,107,.10);
+}
+
+.proof-grid > div:last-child {
+    border-right: 0;
+}
+
+.proof-grid strong {
+    color: var(--gold-bright);
+    font-family: "Cinzel", "Times New Roman", serif;
+    font-size: 1.05rem;
+    letter-spacing: .03em;
+}
+
+.proof-grid span {
+    color: var(--ink-muted);
+    font-size: .78rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
+
+.diagnostic .eyebrow {
+    margin-bottom: 6px;
+}
+
+.diagnostic-content .btn {
+    min-width: 240px;
+}
+
+@media (max-width: 800px) {
+    .proof-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .proof-grid > div:nth-child(2) {
+        border-right: 0;
+    }
+
+    .proof-grid > div:nth-child(-n+2) {
+        border-bottom: 1px solid rgba(199,168,107,.10);
+    }
+
+    .proof-grid > div {
+        padding: 16px 18px;
+    }
+}
