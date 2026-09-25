@@ -1,5 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    // Android mantém o layout responsivo mesmo quando o Chrome solicita
+    // "Site para computador". O modo desktop do navegador altera o viewport,
+    // mas não deve transformar a interface touch em uma versão desktop distorcida.
+    if (/Android/i.test(navigator.userAgent)) {
+        document.documentElement.classList.add("android-mobile-mode");
+    }
+
+
     /* =========================================================
        ELEMENTOS
        ========================================================= */
