@@ -459,8 +459,6 @@ document.addEventListener("DOMContentLoaded", () => {
         sections.forEach((section) => sectionObserver.observe(section));
     }
 
-});
-
 
     /* =========================================================
        IDIOMAS — PT / EN / ES
