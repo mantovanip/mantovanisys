@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
     <title>MantovaniSys | Site + Google para sua empresa aparecer</title>
 
@@ -201,6 +201,20 @@
             if (isAndroid) {
                 document.documentElement.classList.add("android-mobile-mode");
             }
+        })();
+    </script>
+
+
+    <script>
+        (function () {
+            const preventZoom = (event) => {
+                if (event.ctrlKey) event.preventDefault();
+            };
+
+            document.addEventListener("gesturestart", (event) => event.preventDefault(), { passive: false });
+            document.addEventListener("gesturechange", (event) => event.preventDefault(), { passive: false });
+            document.addEventListener("gestureend", (event) => event.preventDefault(), { passive: false });
+            document.addEventListener("wheel", preventZoom, { passive: false });
         })();
     </script>
 
