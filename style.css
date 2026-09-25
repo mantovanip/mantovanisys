@@ -3006,3 +3006,48 @@ h3::first-letter {
     border-left: 1.5px solid currentColor;
     transform: rotate(45deg);
 }
+
+/* =========================================================
+   MODO COMPUTADOR EM DISPOSITIVOS MÓVEIS — RESPONSIVO
+   ========================================================= */
+
+/*
+ * O navegador decide quando "Site para computador" deve usar um viewport
+ * maior. O site não força desktop no celular: quando o navegador fornece
+ * largura de desktop, estas regras preservam a experiência desktop sem
+ * quebrar o conteúdo. Em largura real de celular, as media queries abaixo
+ * continuam responsáveis pelo layout mobile.
+ */
+@media (min-width: 801px) and (max-width: 1100px) {
+    html,
+    body {
+        min-width: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: min(94%, 1180px);
+    }
+
+    .hero-grid,
+    .solution-grid,
+    .benefits-grid,
+    .diagnostic-grid {
+        width: 100%;
+    }
+
+    .cases-grid#casesTrack .case-card {
+        flex-basis: min(520px, 72vw);
+        max-width: min(520px, 72vw);
+    }
+}
+
+@media (max-width: 800px) {
+    html,
+    body {
+        min-width: 0;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
