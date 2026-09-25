@@ -3054,268 +3054,22 @@ h3::first-letter {
 
 
 /* =========================================================
-   MOBILE REAL — ANDROID / CHROME DESKTOP SITE
+   RESPONSIVIDADE UNIVERSAL — MOBILE REAL
    ========================================================= */
 
-/*
- * O Chrome Android pode ignorar a meta viewport quando "Site para
- * computador" está ativo e usar um viewport virtual de ~980px.
- * Nesse cenário, @media (max-width: 800px) não dispara.
- *
- * Usamos pointer: coarse + largura do viewport para identificar esse
- * cenário sem transformar notebooks/monitores comuns em layout mobile.
- */
-
-/* Android detectado pelo JS */
-html.android-mobile-mode,
-html.android-mobile-mode body {
-    min-width: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-}
-
-html.android-mobile-mode * {
-    min-width: 0;
-}
-
-html.android-mobile-mode body {
-    touch-action: pan-x pan-y;
-}
-
-html.android-mobile-mode .container {
-    width: calc(100% - 32px) !important;
-    max-width: var(--container) !important;
-}
-
-html.android-mobile-mode .section {
-    padding: 78px 0;
-}
-
-html.android-mobile-mode .header {
-    height: 72px;
-}
-
-html.android-mobile-mode .logo {
-    width: 150px;
-}
-
-html.android-mobile-mode .menu-toggle {
-    display: block;
-}
-
-html.android-mobile-mode .nav {
-    position: fixed;
-    top: 72px;
-    right: 16px;
-    left: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    width: auto;
-    max-width: none;
-    padding: 10px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: rgba(8, 26, 45, 0.98);
-    box-shadow: var(--shadow);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-}
-
-html.android-mobile-mode .nav.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-html.android-mobile-mode .nav > a:not(.nav-cta) {
-    padding: 14px 12px;
-    border-radius: 8px;
-    font-size: .9rem;
-}
-
-html.android-mobile-mode .nav-cta {
-    margin-top: 8px;
-}
-
-html.android-mobile-mode .language-switcher {
-    position: absolute;
-    right: 96px;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0;
-}
-
-html.android-mobile-mode .hero {
-    min-height: auto;
-    padding: 125px 0 80px;
-}
-
-html.android-mobile-mode .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 55px;
-}
-
-html.android-mobile-mode .hero-content {
-    max-width: none;
-}
-
-html.android-mobile-mode .hero h1 {
-    font-size: 2.55rem;
-}
-
-html.android-mobile-mode .hero-description {
-    font-size: .98rem;
-}
-
-html.android-mobile-mode .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-}
-
-html.android-mobile-mode .hero-actions .btn {
-    width: 100%;
-}
-
-html.android-mobile-mode .hero-trust {
-    grid-template-columns: 1fr;
-    gap: 15px;
-}
-
-html.android-mobile-mode .browser-window,
-html.android-mobile-mode .browser-window:hover {
-    transform: none;
-}
-
-html.android-mobile-mode .browser-content {
-    min-height: 300px;
-    padding: 32px 22px;
-}
-
-html.android-mobile-mode .problem-grid,
-html.android-mobile-mode .services-grid,
-html.android-mobile-mode .plans-grid {
-    grid-template-columns: 1fr;
-}
-
-html.android-mobile-mode .problem-card,
-html.android-mobile-mode .service-card,
-html.android-mobile-mode .plan-card {
-    padding: 24px;
-}
-
-html.android-mobile-mode .solution-grid,
-html.android-mobile-mode .benefits-grid {
-    grid-template-columns: 1fr;
-    gap: 50px;
-}
-
-html.android-mobile-mode .solution-content h2,
-html.android-mobile-mode .benefits-heading h2 {
-    font-size: 2rem;
-}
-
-html.android-mobile-mode .solution-point {
-    grid-template-columns: 45px 1fr;
-    padding: 20px;
-}
-
-html.android-mobile-mode .benefit {
-    grid-template-columns: 35px 1fr;
-    padding: 20px;
-}
-
-html.android-mobile-mode .cases-carousel-wrap {
-    display: block;
-}
-
-html.android-mobile-mode .cases-grid,
-html.android-mobile-mode .cases-grid#casesTrack {
-    justify-content: flex-start;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    gap: 20px;
-    padding: 4px 8% 10px 0;
-}
-
-html.android-mobile-mode .cases-grid::-webkit-scrollbar {
-    display: none;
-}
-
-html.android-mobile-mode .case-card,
-html.android-mobile-mode .cases-grid#casesTrack .case-card {
-    flex: 0 0 92%;
-    max-width: none;
-    scroll-snap-align: start;
-}
-
-html.android-mobile-mode .cases-nav {
-    display: none;
-}
-
-html.android-mobile-mode .process-grid {
-    grid-template-columns: 1fr;
-}
-
-html.android-mobile-mode .process-step:not(:last-child)::after {
-    display: none;
-}
-
-html.android-mobile-mode .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 38px;
-}
-
-html.android-mobile-mode .footer-brand {
-    grid-column: auto;
-}
-
-html.android-mobile-mode .proof-grid {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-html.android-mobile-mode .diagnostic-grid {
-    grid-template-columns: 1fr;
-    gap: 34px;
-}
-
-html.android-mobile-mode .section-dots {
-    display: none !important;
-}
-
-html.android-mobile-mode .floating-whatsapp {
-    right: 14px;
-    bottom: 14px;
-    width: 44px;
-    height: 44px;
-    min-height: 44px;
-    padding: 0;
-    opacity: .62;
-}
-
-html.android-mobile-mode .floating-whatsapp span {
-    display: none;
-}
-
-
-/* Chrome Android em "Site para computador":
-   o viewport virtual costuma ficar em ~980px.
-   pointer: coarse diferencia esse caso de desktop normal. */
-@media (min-width: 801px) and (max-width: 1100px) and (pointer: coarse) {
+/* Qualquer viewport estreito */
+@media (max-width: 800px) {
     html,
     body {
-        min-width: 0 !important;
-        max-width: 100% !important;
-        overflow-x: hidden !important;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     .container {
-        width: calc(100% - 32px) !important;
-        max-width: 760px !important;
+        width: calc(100% - 32px);
+        max-width: var(--container);
     }
 
     .section {
@@ -3348,7 +3102,7 @@ html.android-mobile-mode .floating-whatsapp span {
         padding: 10px;
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        background: rgba(8, 26, 45, .98);
+        background: rgba(8,26,45,.98);
         box-shadow: var(--shadow);
         opacity: 0;
         visibility: hidden;
@@ -3435,6 +3189,12 @@ html.android-mobile-mode .floating-whatsapp span {
 
     .solution-point {
         grid-template-columns: 45px 1fr;
+        padding: 20px;
+    }
+
+    .benefit {
+        grid-template-columns: 35px 1fr;
+        padding: 20px;
     }
 
     .process-grid {
@@ -3474,7 +3234,7 @@ html.android-mobile-mode .floating-whatsapp span {
 
     .case-card,
     .cases-grid#casesTrack .case-card {
-        flex: 0 0 78%;
+        flex: 0 0 92%;
         max-width: none;
         scroll-snap-align: start;
     }
@@ -3511,8 +3271,326 @@ html.android-mobile-mode .floating-whatsapp span {
     }
 }
 
+/* =========================================================
+   ANDROID / iOS — "SITE PARA COMPUTADOR"
+   =========================================================
+   Em navegadores móveis que simulam desktop, o viewport CSS pode
+   ficar entre 801 e ~1200px. pointer: coarse identifica telas touch.
+*/
+@media (min-width: 801px) and (max-width: 1200px) and (pointer: coarse) {
+    html,
+    body {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
 
-/* Zoom: bloqueio de gestos de página dentro do que o navegador permite. */
+    * {
+        min-width: 0;
+    }
+
+    .container {
+        width: calc(100% - 32px) !important;
+        max-width: 760px !important;
+    }
+
+    .section {
+        padding: 78px 0;
+    }
+
+    .header {
+        height: 72px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav {
+        position: fixed;
+        top: 72px;
+        right: 16px;
+        left: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: auto;
+        max-width: none;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(8,26,45,.98);
+        box-shadow: var(--shadow);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+    }
+
+    .nav.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .nav > a:not(.nav-cta) {
+        padding: 14px 12px;
+        font-size: .9rem;
+    }
+
+    .nav-cta {
+        margin-top: 8px;
+    }
+
+    .language-switcher {
+        position: absolute;
+        right: 96px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 125px 0 80px;
+    }
+
+    .hero-grid,
+    .solution-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .hero-content {
+        max-width: none;
+    }
+
+    .hero h1 {
+        font-size: 2.55rem;
+    }
+
+    .hero-description {
+        font-size: .98rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .hero-trust {
+        grid-template-columns: 1fr;
+    }
+
+    .browser-window,
+    .browser-window:hover {
+        transform: none;
+    }
+
+    .browser-content {
+        min-height: 300px;
+        padding: 32px 22px;
+    }
+
+    .problem-grid,
+    .services-grid,
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .problem-card,
+    .service-card,
+    .plan-card {
+        padding: 24px;
+    }
+
+    .solution-point {
+        grid-template-columns: 45px 1fr;
+        padding: 20px;
+    }
+
+    .benefit {
+        grid-template-columns: 35px 1fr;
+        padding: 20px;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .process-step:not(:last-child)::after {
+        display: none;
+    }
+
+    .proof-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .diagnostic-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .cases-carousel-wrap {
+        display: block;
+    }
+
+    .cases-grid,
+    .cases-grid#casesTrack {
+        justify-content: flex-start;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        gap: 20px;
+        padding: 4px 8% 10px 0;
+    }
+
+    .cases-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .case-card,
+    .cases-grid#casesTrack .case-card {
+        flex: 0 0 92%;
+        max-width: none;
+        scroll-snap-align: start;
+    }
+
+    .cases-nav {
+        display: none;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 38px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+
+    .section-dots {
+        display: none !important;
+    }
+
+    .floating-whatsapp {
+        right: 14px;
+        bottom: 14px;
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        padding: 0;
+        opacity: .62;
+    }
+
+    .floating-whatsapp span {
+        display: none;
+    }
+}
+
+/* Android JS fallback: cobre navegadores que não expõem pointer: coarse */
+html.android-mobile-mode,
+html.android-mobile-mode body {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+html.android-mobile-mode * {
+    min-width: 0 !important;
+}
+
+html.android-mobile-mode .container {
+    width: calc(100% - 32px) !important;
+    max-width: 760px !important;
+}
+
+html.android-mobile-mode .hero-grid,
+html.android-mobile-mode .solution-grid,
+html.android-mobile-mode .benefits-grid,
+html.android-mobile-mode .problem-grid,
+html.android-mobile-mode .services-grid,
+html.android-mobile-mode .plans-grid,
+html.android-mobile-mode .diagnostic-grid,
+html.android-mobile-mode .process-grid {
+    grid-template-columns: 1fr !important;
+}
+
+html.android-mobile-mode .menu-toggle {
+    display: block !important;
+}
+
+html.android-mobile-mode .nav {
+    position: fixed !important;
+    top: 72px !important;
+    right: 16px !important;
+    left: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: auto !important;
+    max-width: none !important;
+    opacity: 0;
+    visibility: hidden;
+}
+
+html.android-mobile-mode .nav.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+html.android-mobile-mode .hero {
+    min-height: auto !important;
+    padding: 125px 0 80px !important;
+}
+
+html.android-mobile-mode .hero-actions {
+    flex-direction: column !important;
+}
+
+html.android-mobile-mode .hero-actions .btn {
+    width: 100% !important;
+}
+
+html.android-mobile-mode .browser-window,
+html.android-mobile-mode .browser-window:hover {
+    transform: none !important;
+}
+
+html.android-mobile-mode .cases-grid#casesTrack {
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+}
+
+html.android-mobile-mode .case-card {
+    flex: 0 0 92% !important;
+}
+
+html.android-mobile-mode .cases-nav {
+    display: none !important;
+}
+
+html.android-mobile-mode .footer-grid {
+    grid-template-columns: 1fr !important;
+}
+
+html.android-mobile-mode .section-dots {
+    display: none !important;
+}
+
+/* Bloqueio de gestos de zoom da página dentro do que o navegador permite. */
 html,
 body {
     touch-action: pan-x pan-y;
