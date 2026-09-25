@@ -191,6 +191,19 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <script>
+        (function () {
+            const isAndroid =
+                /Android/i.test(navigator.userAgent) ||
+                navigator.userAgentData?.platform === "Android" ||
+                (/Linux/i.test(navigator.platform) && navigator.maxTouchPoints > 0);
+
+            if (isAndroid) {
+                document.documentElement.classList.add("android-mobile-mode");
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="style.css">
 
 </head>
