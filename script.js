@@ -645,6 +645,25 @@ document.addEventListener("DOMContentLoaded", () => {
             node.nodeValue = raw.replace(key, translated);
         });
 
+        // Parágrafos e outros elementos de texto com quebras de linha no HTML
+        // podem ter o conteúdo dividido em vários text nodes. Nesse caso,
+        // traduzimos o elemento inteiro usando seu texto normalizado.
+        document.querySelectorAll("p, li, button, a, label").forEach((element) => {
+            if (element.children.length > 0) return;
+
+            const rawText = element.textContent || "";
+            const key = normalizeTranslationKey(rawText);
+            if (!key) return;
+
+            const translated = lang === "pt"
+                ? key
+                : (dictionary[rawText.trim()] || normalizedDictionary.get(key) || key);
+
+            if (translated !== key || lang === "pt") {
+                element.textContent = translated;
+            }
+        });
+
         document.querySelectorAll("[aria-label], [title], [placeholder], [alt]").forEach((el) => {
             if (!originalText.has(el)) {
                 originalText.set(el, {
