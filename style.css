@@ -2226,7 +2226,7 @@ h1::first-letter,
 h2::first-letter,
 h3::first-letter,
 .hero .eyebrow::first-letter {
-    font-family: "UnifrakturCook", "Times New Roman", serif;
+    font-family: "Cinzel", "Times New Roman", serif;
     color: var(--gold-bright);
     font-weight: 700;
 }
@@ -2493,7 +2493,7 @@ h3::first-letter,
 h1::first-letter,
 h2::first-letter,
 h3::first-letter {
-    font-family: "UnifrakturCook", "Times New Roman", serif;
+    font-family: "Cinzel", "Times New Roman", serif;
     color: var(--gold-bright);
     text-shadow: 0 0 14px rgba(199,168,107,.12);
 }
