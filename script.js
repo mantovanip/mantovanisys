@@ -357,32 +357,8 @@ document.addEventListener("DOMContentLoaded", () => {
         casesPrev?.addEventListener("click", () => moveCases(-1));
         casesNext?.addEventListener("click", () => moveCases(1));
 
-        let dragging = false;
-        let startX = 0;
-        let startScroll = 0;
-
-        casesTrack.addEventListener("pointerdown", (event) => {
-            if (event.pointerType === "mouse" && event.button !== 0) return;
-            dragging = true;
-            startX = event.clientX;
-            startScroll = casesTrack.scrollLeft;
-            casesTrack.classList.add("is-dragging");
-            casesTrack.setPointerCapture?.(event.pointerId);
-        });
-
-        casesTrack.addEventListener("pointermove", (event) => {
-            if (!dragging) return;
-            casesTrack.scrollLeft = startScroll - (event.clientX - startX);
-        });
-
-        const stopDragging = () => {
-            dragging = false;
-            casesTrack.classList.remove("is-dragging");
-        };
-
-        casesTrack.addEventListener("pointerup", stopDragging);
-        casesTrack.addEventListener("pointercancel", stopDragging);
-        casesTrack.addEventListener("lostpointercapture", stopDragging);
+        // Mobile uses native touch scrolling. Desktop uses the arrow controls.
+        // Keeping links free of pointer-capture guarantees every project button remains clickable.
     }
 
 });
