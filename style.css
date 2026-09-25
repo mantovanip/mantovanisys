@@ -3054,21 +3054,29 @@ h3::first-letter {
 
 
 /* =========================================================
-   ANDROID — MOBILE REAL MESMO NO "SITE PARA COMPUTADOR"
+   MOBILE REAL — ANDROID / CHROME DESKTOP SITE
    ========================================================= */
 
 /*
- * O Chrome Android pode fornecer um viewport CSS de desktop quando
- * "Site para computador" está ativo. Neste modo não usamos o viewport
- * para decidir a estrutura: reproduzimos diretamente o mesmo layout
- * usado pelo @media (max-width: 800px) do site.
+ * O Chrome Android pode ignorar a meta viewport quando "Site para
+ * computador" está ativo e usar um viewport virtual de ~980px.
+ * Nesse cenário, @media (max-width: 800px) não dispara.
+ *
+ * Usamos pointer: coarse + largura do viewport para identificar esse
+ * cenário sem transformar notebooks/monitores comuns em layout mobile.
  */
+
+/* Android detectado pelo JS */
 html.android-mobile-mode,
 html.android-mobile-mode body {
     min-width: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
     overflow-x: hidden !important;
+}
+
+html.android-mobile-mode * {
+    min-width: 0;
 }
 
 html.android-mobile-mode body {
@@ -3078,14 +3086,12 @@ html.android-mobile-mode body {
 html.android-mobile-mode .container {
     width: calc(100% - 32px) !important;
     max-width: var(--container) !important;
-    min-width: 0 !important;
 }
 
 html.android-mobile-mode .section {
-    padding: 90px 0;
+    padding: 78px 0;
 }
 
-/* Header */
 html.android-mobile-mode .header {
     height: 72px;
 }
@@ -3103,30 +3109,20 @@ html.android-mobile-mode .nav {
     top: 72px;
     right: 16px;
     left: 16px;
-
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-
     width: auto;
     max-width: none;
     padding: 10px;
-
     border: 1px solid var(--border);
     border-radius: var(--radius);
-
     background: rgba(8, 26, 45, 0.98);
     box-shadow: var(--shadow);
-
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
-
-    transition:
-        opacity var(--transition),
-        visibility var(--transition),
-        transform var(--transition);
 }
 
 html.android-mobile-mode .nav.active {
@@ -3138,37 +3134,21 @@ html.android-mobile-mode .nav.active {
 html.android-mobile-mode .nav > a:not(.nav-cta) {
     padding: 14px 12px;
     border-radius: 8px;
-    font-size: 0.9rem;
-}
-
-html.android-mobile-mode .nav > a:not(.nav-cta):hover {
-    background: rgba(255, 255, 255, 0.04);
+    font-size: .9rem;
 }
 
 html.android-mobile-mode .nav-cta {
     margin-top: 8px;
 }
 
-/* Idiomas */
 html.android-mobile-mode .language-switcher {
     position: absolute;
-    right: 112px;
+    right: 96px;
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
-    padding: 2px;
-    gap: 1px;
-    background: rgba(5,16,28,.72);
 }
 
-html.android-mobile-mode .language-btn {
-    min-width: 29px;
-    height: 26px;
-    padding: 0 6px;
-    font-size: .58rem;
-}
-
-/* Hero */
 html.android-mobile-mode .hero {
     min-height: auto;
     padding: 125px 0 80px;
@@ -3184,11 +3164,11 @@ html.android-mobile-mode .hero-content {
 }
 
 html.android-mobile-mode .hero h1 {
-    font-size: clamp(2.45rem, 10vw, 3.7rem);
+    font-size: 2.55rem;
 }
 
 html.android-mobile-mode .hero-description {
-    font-size: 0.98rem;
+    font-size: .98rem;
 }
 
 html.android-mobile-mode .hero-actions {
@@ -3205,21 +3185,16 @@ html.android-mobile-mode .hero-trust {
     gap: 15px;
 }
 
-html.android-mobile-mode .hero-visual {
-    width: 100%;
-}
-
 html.android-mobile-mode .browser-window,
 html.android-mobile-mode .browser-window:hover {
     transform: none;
 }
 
 html.android-mobile-mode .browser-content {
-    min-height: 350px;
-    padding: 38px 28px;
+    min-height: 300px;
+    padding: 32px 22px;
 }
 
-/* Grids */
 html.android-mobile-mode .problem-grid,
 html.android-mobile-mode .services-grid,
 html.android-mobile-mode .plans-grid {
@@ -3229,23 +3204,30 @@ html.android-mobile-mode .plans-grid {
 html.android-mobile-mode .problem-card,
 html.android-mobile-mode .service-card,
 html.android-mobile-mode .plan-card {
-    padding: 28px;
+    padding: 24px;
 }
 
-/* Solution / Benefits / FAQ */
 html.android-mobile-mode .solution-grid,
-html.android-mobile-mode .benefits-grid,
-html.android-mobile-mode .faq-container {
+html.android-mobile-mode .benefits-grid {
     grid-template-columns: 1fr;
     gap: 50px;
 }
 
 html.android-mobile-mode .solution-content h2,
 html.android-mobile-mode .benefits-heading h2 {
-    font-size: clamp(2rem, 9vw, 3rem);
+    font-size: 2rem;
 }
 
-/* Projects */
+html.android-mobile-mode .solution-point {
+    grid-template-columns: 45px 1fr;
+    padding: 20px;
+}
+
+html.android-mobile-mode .benefit {
+    grid-template-columns: 35px 1fr;
+    padding: 20px;
+}
+
 html.android-mobile-mode .cases-carousel-wrap {
     display: block;
 }
@@ -3266,7 +3248,7 @@ html.android-mobile-mode .cases-grid::-webkit-scrollbar {
 
 html.android-mobile-mode .case-card,
 html.android-mobile-mode .cases-grid#casesTrack .case-card {
-    flex: 0 0 88%;
+    flex: 0 0 92%;
     max-width: none;
     scroll-snap-align: start;
 }
@@ -3275,120 +3257,12 @@ html.android-mobile-mode .cases-nav {
     display: none;
 }
 
-/* Plans */
-html.android-mobile-mode .plan-description {
-    min-height: auto;
-}
-
-/* Process */
 html.android-mobile-mode .process-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 html.android-mobile-mode .process-step:not(:last-child)::after {
     display: none;
-}
-
-/* Footer */
-html.android-mobile-mode .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 45px;
-}
-
-html.android-mobile-mode .footer-brand {
-    grid-column: 1 / -1;
-}
-
-/* Proof / diagnostic */
-html.android-mobile-mode .proof-strip {
-    margin-top: 0;
-}
-
-html.android-mobile-mode .proof-grid {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-html.android-mobile-mode .proof-grid > div:nth-child(2) {
-    border-right: 0;
-}
-
-html.android-mobile-mode .proof-grid > div:nth-child(-n+2) {
-    border-bottom: 1px solid rgba(199,168,107,.10);
-}
-
-html.android-mobile-mode .proof-grid > div {
-    padding: 16px 18px;
-}
-
-html.android-mobile-mode .diagnostic-grid {
-    grid-template-columns: 1fr;
-    gap: 34px;
-}
-
-html.android-mobile-mode .diagnostic-content h2 {
-    font-size: clamp(1.8rem, 7vw, 2.5rem);
-}
-
-html.android-mobile-mode .section-dots {
-    display: none !important;
-}
-
-/* Mobile small-screen refinements are also forced in desktop mode. */
-html.android-mobile-mode .section {
-    padding: 78px 0;
-}
-
-html.android-mobile-mode .section-heading {
-    margin-bottom: 36px;
-}
-
-html.android-mobile-mode .section-heading h2 {
-    font-size: 2rem;
-}
-
-html.android-mobile-mode .hero h1 {
-    font-size: 2.55rem;
-}
-
-html.android-mobile-mode .browser-content {
-    min-height: 300px;
-    padding: 32px 22px;
-}
-
-html.android-mobile-mode .mock-logo {
-    margin-bottom: 24px;
-}
-
-html.android-mobile-mode .mock-title {
-    font-size: 2rem;
-}
-
-html.android-mobile-mode .problem-card,
-html.android-mobile-mode .service-card,
-html.android-mobile-mode .plan-card {
-    padding: 24px;
-}
-
-html.android-mobile-mode .solution-point {
-    grid-template-columns: 45px 1fr;
-    padding: 20px;
-}
-
-html.android-mobile-mode .benefit {
-    grid-template-columns: 35px 1fr;
-    padding: 20px;
-}
-
-html.android-mobile-mode .process-grid {
-    grid-template-columns: 1fr;
-}
-
-html.android-mobile-mode .case-card {
-    flex-basis: 92%;
-}
-
-html.android-mobile-mode .case-content {
-    padding: 24px;
 }
 
 html.android-mobile-mode .footer-grid {
@@ -3398,6 +3272,19 @@ html.android-mobile-mode .footer-grid {
 
 html.android-mobile-mode .footer-brand {
     grid-column: auto;
+}
+
+html.android-mobile-mode .proof-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+html.android-mobile-mode .diagnostic-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+}
+
+html.android-mobile-mode .section-dots {
+    display: none !important;
 }
 
 html.android-mobile-mode .floating-whatsapp {
@@ -3414,24 +3301,218 @@ html.android-mobile-mode .floating-whatsapp span {
     display: none;
 }
 
-html.android-mobile-mode .language-switcher {
-    right: 96px;
+
+/* Chrome Android em "Site para computador":
+   o viewport virtual costuma ficar em ~980px.
+   pointer: coarse diferencia esse caso de desktop normal. */
+@media (min-width: 801px) and (max-width: 1100px) and (pointer: coarse) {
+    html,
+    body {
+        min-width: 0 !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    .container {
+        width: calc(100% - 32px) !important;
+        max-width: 760px !important;
+    }
+
+    .section {
+        padding: 78px 0;
+    }
+
+    .header {
+        height: 72px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav {
+        position: fixed;
+        top: 72px;
+        right: 16px;
+        left: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: auto;
+        max-width: none;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(8, 26, 45, .98);
+        box-shadow: var(--shadow);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+    }
+
+    .nav.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .nav > a:not(.nav-cta) {
+        padding: 14px 12px;
+        font-size: .9rem;
+    }
+
+    .nav-cta {
+        margin-top: 8px;
+    }
+
+    .language-switcher {
+        position: absolute;
+        right: 96px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 125px 0 80px;
+    }
+
+    .hero-grid,
+    .solution-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .hero-content {
+        max-width: none;
+    }
+
+    .hero h1 {
+        font-size: 2.55rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .hero-trust {
+        grid-template-columns: 1fr;
+    }
+
+    .browser-window,
+    .browser-window:hover {
+        transform: none;
+    }
+
+    .browser-content {
+        min-height: 300px;
+        padding: 32px 22px;
+    }
+
+    .problem-grid,
+    .services-grid,
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .problem-card,
+    .service-card,
+    .plan-card {
+        padding: 24px;
+    }
+
+    .solution-point {
+        grid-template-columns: 45px 1fr;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .process-step:not(:last-child)::after {
+        display: none;
+    }
+
+    .proof-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .diagnostic-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .cases-carousel-wrap {
+        display: block;
+    }
+
+    .cases-grid,
+    .cases-grid#casesTrack {
+        justify-content: flex-start;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        gap: 20px;
+        padding: 4px 8% 10px 0;
+    }
+
+    .cases-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .case-card,
+    .cases-grid#casesTrack .case-card {
+        flex: 0 0 78%;
+        max-width: none;
+        scroll-snap-align: start;
+    }
+
+    .cases-nav {
+        display: none;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 38px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+
+    .section-dots {
+        display: none !important;
+    }
+
+    .floating-whatsapp {
+        right: 14px;
+        bottom: 14px;
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        padding: 0;
+        opacity: .62;
+    }
+
+    .floating-whatsapp span {
+        display: none;
+    }
 }
 
-/* Prevent the page itself from creating a desktop-width canvas. */
-html.android-mobile-mode * {
-    min-width: 0;
-}
 
-html.android-mobile-mode .hero-grid,
-html.android-mobile-mode .solution-grid,
-html.android-mobile-mode .benefits-grid,
-html.android-mobile-mode .faq-container,
-html.android-mobile-mode .diagnostic-grid {
-    width: 100%;
-}
-
-/* Zoom prevention */
+/* Zoom: bloqueio de gestos de página dentro do que o navegador permite. */
 html,
 body {
     touch-action: pan-x pan-y;
