@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 
     <title>MantovaniSys | Site + Google para sua empresa aparecer</title>
 
@@ -207,14 +207,43 @@
 
     <script>
         (function () {
-            const preventZoom = (event) => {
-                if (event.ctrlKey) event.preventDefault();
+            const stopZoom = (event) => event.preventDefault();
+
+            // Bloqueia pinch/gesture zoom em navegadores que expõem esses eventos.
+            document.addEventListener("gesturestart", stopZoom, { passive: false });
+            document.addEventListener("gesturechange", stopZoom, { passive: false });
+            document.addEventListener("gestureend", stopZoom, { passive: false });
+
+            // Bloqueia Ctrl + roda do mouse/trackpad e outros gestos equivalentes.
+            document.addEventListener("wheel", (event) => {
+                if (event.ctrlKey) {
+                    event.preventDefault();
+                }
+            }, { passive: false });
+
+            // Bloqueia atalhos de zoom por teclado quando a página recebe o evento.
+            document.addEventListener("keydown", (event) => {
+                if (
+                    event.ctrlKey &&
+                    ["+", "-", "=", "0"].includes(event.key)
+                ) {
+                    event.preventDefault();
+                }
+            }, { passive: false });
+
+            // Reforça escala 1 no visual viewport quando o navegador altera a escala.
+            const resetScale = () => {
+                const viewport = document.querySelector('meta[name="viewport"]');
+                if (viewport) {
+                    viewport.setAttribute(
+                        "content",
+                        "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+                    );
+                }
             };
 
-            document.addEventListener("gesturestart", (event) => event.preventDefault(), { passive: false });
-            document.addEventListener("gesturechange", (event) => event.preventDefault(), { passive: false });
-            document.addEventListener("gestureend", (event) => event.preventDefault(), { passive: false });
-            document.addEventListener("wheel", preventZoom, { passive: false });
+            window.addEventListener("resize", resetScale, { passive: true });
+            window.addEventListener("orientationchange", resetScale, { passive: true });
         })();
     </script>
 
