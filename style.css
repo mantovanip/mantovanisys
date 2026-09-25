@@ -2833,3 +2833,7 @@ h3::first-letter {
         display: none !important;
     }
 }
+
+
+@media (max-width: 800px) { .language-switcher { right: 112px; } }
+@media (max-width: 420px) { .language-switcher { right: 104px; } }
