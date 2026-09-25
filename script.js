@@ -602,11 +602,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const originalText = new WeakMap();
 
+    const normalizeTranslationKey = (value) => {
+        return value
+            .replace(/\\s+/g, " ")
+            .trim()
+            .replace(/[.!?]+$/u, "");
+    };
+
     const translatePage = (lang) => {
         const dictionary = translations[lang] || {};
         if (!["pt","en","es"].includes(lang)) return;
 
         document.documentElement.lang = lang === "pt" ? "pt-BR" : lang;
+
+        const normalizedDictionary = new Map();
+        Object.entries(dictionary).forEach(([key, value]) => {
+            normalizedDictionary.set(normalizeTranslationKey(key), value);
+        });
 
         document.querySelectorAll("title, meta[name='description'], meta[property='og:title'], meta[property='og:description'], meta[name='twitter:title'], meta[name='twitter:description']").forEach((el) => {
             if (!originalText.has(el)) originalText.set(el, el.content || el.textContent);
@@ -624,8 +636,42 @@ document.addEventListener("DOMContentLoaded", () => {
             const raw = originalText.get(node);
             const key = raw.trim();
             if (!key) return;
-            const translated = lang === "pt" ? key : (dictionary[key] || key);
+
+            const normalizedKey = normalizeTranslationKey(key);
+            const translated = lang === "pt"
+                ? key
+                : (dictionary[key] || normalizedDictionary.get(normalizedKey) || key);
+
             node.nodeValue = raw.replace(key, translated);
+        });
+
+        document.querySelectorAll("[aria-label], [title], [placeholder], [alt]").forEach((el) => {
+            if (!originalText.has(el)) {
+                originalText.set(el, {
+                    ariaLabel: el.getAttribute("aria-label"),
+                    title: el.getAttribute("title"),
+                    placeholder: el.getAttribute("placeholder"),
+                    alt: el.getAttribute("alt")
+                });
+            }
+
+            if (lang === "pt") {
+                const original = originalText.get(el);
+                ["aria-label", "title", "placeholder", "alt"].forEach((attribute) => {
+                    const property = attribute === "aria-label" ? "ariaLabel" : attribute;
+                    if (original[property] !== null) el.setAttribute(attribute, original[property]);
+                });
+                return;
+            }
+
+            const original = originalText.get(el);
+            ["aria-label", "title", "placeholder", "alt"].forEach((attribute) => {
+                const property = attribute === "aria-label" ? "ariaLabel" : attribute;
+                const value = original[property];
+                if (!value) return;
+                const translated = dictionary[value] || normalizedDictionary.get(normalizeTranslationKey(value)) || value;
+                el.setAttribute(attribute, translated);
+            });
         });
 
         const titleMap = {
