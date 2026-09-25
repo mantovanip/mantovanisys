@@ -2837,3 +2837,172 @@ h3::first-letter {
 
 @media (max-width: 800px) { .language-switcher { right: 112px; } }
 @media (max-width: 420px) { .language-switcher { right: 104px; } }
+
+
+/* =========================================================
+   SETAS PERSONALIZADAS — SEM CARACTERES DE TEXTO
+   ========================================================= */
+
+.text-link::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: 9px;
+    border-top: 1.5px solid currentColor;
+    border-right: 1.5px solid currentColor;
+    transform: rotate(45deg) translateY(-1px);
+    transition: transform .25s ease;
+}
+
+.text-link:hover::after {
+    transform: rotate(45deg) translate(3px, -1px);
+}
+
+.case-link > span {
+    position: relative;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 1px;
+}
+
+.case-link > span::before,
+.case-link > span::after {
+    content: "";
+    position: absolute;
+    display: block;
+}
+
+.case-link > span::before {
+    top: 2px;
+    right: 1px;
+    width: 8px;
+    height: 8px;
+    border-top: 1.5px solid currentColor;
+    border-right: 1.5px solid currentColor;
+    transform: rotate(45deg);
+}
+
+.case-link > span::after {
+    top: 6px;
+    left: 1px;
+    width: 10px;
+    height: 1.5px;
+    background: currentColor;
+    transform: rotate(-45deg);
+    transform-origin: left center;
+}
+
+.case-arrow {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    position: relative;
+}
+
+.case-arrow::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 9px;
+    height: 9px;
+    border-top: 1.5px solid currentColor;
+    border-right: 1.5px solid currentColor;
+    transform: rotate(45deg);
+}
+
+.case-arrow::after {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 1px;
+    width: 11px;
+    height: 1.5px;
+    background: currentColor;
+    transform: rotate(-45deg);
+    transform-origin: left center;
+}
+
+.cases-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cases-nav > span {
+    position: relative;
+    display: block;
+    width: 16px;
+    height: 12px;
+}
+
+.cases-nav > span::before,
+.cases-nav > span::after {
+    content: "";
+    position: absolute;
+    display: block;
+}
+
+.cases-prev > span::before,
+.cases-next > span::before {
+    top: 5px;
+    width: 15px;
+    height: 1.5px;
+    background: currentColor;
+}
+
+.cases-prev > span::before { left: 0; }
+.cases-next > span::before { right: 0; }
+
+.cases-prev > span::after,
+.cases-next > span::after {
+    width: 7px;
+    height: 7px;
+    top: 2px;
+    border-top: 1.5px solid currentColor;
+    border-right: 1.5px solid currentColor;
+}
+
+.cases-prev > span::after {
+    left: 0;
+    transform: rotate(-135deg);
+}
+
+.cases-next > span::after {
+    right: 0;
+    transform: rotate(45deg);
+}
+
+.back-to-top > span {
+    position: relative;
+    display: block;
+    width: 14px;
+    height: 16px;
+}
+
+.back-to-top > span::before,
+.back-to-top > span::after {
+    content: "";
+    position: absolute;
+    display: block;
+}
+
+.back-to-top > span::before {
+    left: 6px;
+    top: 3px;
+    width: 1.5px;
+    height: 11px;
+    background: currentColor;
+}
+
+.back-to-top > span::after {
+    left: 3px;
+    top: 1px;
+    width: 6px;
+    height: 6px;
+    border-top: 1.5px solid currentColor;
+    border-left: 1.5px solid currentColor;
+    transform: rotate(45deg);
+}
