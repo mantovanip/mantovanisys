@@ -2437,3 +2437,105 @@ h3::first-letter,
         display: none;
     }
 }
+
+
+/* =========================================================
+   AJUSTE DE CONTRASTE — PALETA GÓTICA / METALLIC NIGHT
+   ========================================================= */
+
+:root {
+    --gold: #c7a86b;
+    --gold-bright: #e0c78a;
+    --gold-soft: rgba(199,168,107,.16);
+    --ink-light: #e8edf2;
+    --ink-muted: #aeb9c5;
+}
+
+/* Ouro somente em elementos de destaque, nunca no texto corrido */
+.eyebrow,
+.problem-number,
+.point-icon,
+.case-category,
+.process-number,
+.plan-badge,
+.text-link,
+.case-link {
+    color: var(--gold-bright);
+}
+
+.section-heading h2,
+.solution-content h2,
+.benefits-heading h2,
+.service-card h3,
+.problem-card h3,
+.solution-point h3,
+.case-content h3,
+.plan-card h3,
+.process-step h3,
+.faq-question {
+    color: var(--ink-light);
+}
+
+.section-heading p,
+.hero-description,
+.hero-trust span,
+.problem-card p,
+.solution-point p,
+.service-card p,
+.case-content p,
+.plan-description,
+.process-step p,
+.faq-answer p {
+    color: var(--ink-muted);
+}
+
+/* Inicial gótica com contraste controlado */
+h1::first-letter,
+h2::first-letter,
+h3::first-letter {
+    font-family: "UnifrakturCook", "Times New Roman", serif;
+    color: var(--gold-bright);
+    text-shadow: 0 0 14px rgba(199,168,107,.12);
+}
+
+/* CTAs continuam claros para leitura imediata */
+.btn-primary {
+    color: #071321;
+    background: var(--gold-bright);
+}
+
+.btn-primary:hover {
+    color: #071321;
+    background: #f0dcae;
+}
+
+/* Pontos laterais */
+.section-dots {
+    border-color: rgba(199,168,107,.16);
+    background: rgba(5,16,28,.72);
+}
+
+.section-dot::before {
+    background: rgba(232,237,242,.48);
+}
+
+.section-dot:hover::before,
+.section-dot.active::before {
+    background: var(--gold-bright);
+}
+
+/* Setas */
+.cases-nav {
+    border-color: rgba(199,168,107,.34);
+}
+
+.cases-nav::before {
+    border-color: var(--gold-bright);
+}
+
+/* Destaques curtos */
+.hero-trust strong,
+.mock-logo,
+.mock-title span {
+    color: var(--gold-bright);
+}
