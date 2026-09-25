@@ -56,9 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 "false"
             );
 
+            const lang = document.documentElement.lang || "pt-BR";
             menuToggle.setAttribute(
                 "aria-label",
-                "Abrir menu"
+                mainNav.classList.contains("active")
+                    ? (lang === "en" ? "Close menu" : lang === "es" ? "Cerrar menú" : "Fechar menu")
+                    : (lang === "en" ? "Open menu" : lang === "es" ? "Abrir menú" : "Abrir menu")
             );
 
         };
@@ -74,11 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 String(isActive)
             );
 
+            const lang = document.documentElement.lang || "pt-BR";
             menuToggle.setAttribute(
                 "aria-label",
                 isActive
-                    ? "Fechar menu"
-                    : "Abrir menu"
+                    ? (lang === "en" ? "Close menu" : lang === "es" ? "Cerrar menú" : "Fechar menu")
+                    : (lang === "en" ? "Open menu" : lang === "es" ? "Abrir menú" : "Abrir menu")
             );
 
         });
@@ -312,9 +316,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     "false"
                 );
 
+                const lang = document.documentElement.lang || "pt-BR";
                 menuToggle.setAttribute(
                     "aria-label",
-                    "Abrir menu"
+                    lang === "en" ? "Open menu" : lang === "es" ? "Abrir menú" : "Abrir menu"
                 );
 
             }
@@ -601,10 +606,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const originalText = new WeakMap();
+    const originalElementText = new WeakMap();
 
     const normalizeTranslationKey = (value) => {
         return value
-            .replace(/\\s+/g, " ")
+            .replace(/\s+/g, " ")
             .trim()
             .replace(/[.!?]+$/u, "");
     };
@@ -624,11 +630,37 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!originalText.has(el)) originalText.set(el, el.content || el.textContent);
         });
 
+        // Primeiro traduzimos elementos de texto inteiros.
+        // Isso evita o problema de textos quebrados em várias linhas e
+        // mantém a tradução reversível ao trocar EN <-> ES <-> PT.
+        document.querySelectorAll("p, li, button, a, label").forEach((element) => {
+            if (element.children.length > 0) return;
+
+            if (!originalElementText.has(element)) {
+                originalElementText.set(element, element.textContent || "");
+            }
+
+            const rawText = originalElementText.get(element);
+            const key = normalizeTranslationKey(rawText);
+            if (!key) return;
+
+            const translated = lang === "pt"
+                ? key
+                : (dictionary[rawText.trim()] || normalizedDictionary.get(key) || key);
+
+            element.textContent = translated;
+        });
+
+        // Elementos com conteúdo inline (spans, strong etc.) continuam sendo
+        // traduzidos por text node, preservando a estrutura visual.
         const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
         const nodes = [];
         while (walker.nextNode()) {
             const node = walker.currentNode;
-            if (node.parentElement && !["SCRIPT","STYLE"].includes(node.parentElement.tagName)) nodes.push(node);
+            if (node.parentElement && !["SCRIPT","STYLE"].includes(node.parentElement.tagName)) {
+                const parent = node.parentElement;
+                if (parent.children.length > 0) nodes.push(node);
+            }
         }
 
         nodes.forEach((node) => {
@@ -645,25 +677,7 @@ document.addEventListener("DOMContentLoaded", () => {
             node.nodeValue = raw.replace(key, translated);
         });
 
-        // Parágrafos e outros elementos de texto com quebras de linha no HTML
-        // podem ter o conteúdo dividido em vários text nodes. Nesse caso,
-        // traduzimos o elemento inteiro usando seu texto normalizado.
-        document.querySelectorAll("p, li, button, a, label").forEach((element) => {
-            if (element.children.length > 0) return;
-
-            const rawText = element.textContent || "";
-            const key = normalizeTranslationKey(rawText);
-            if (!key) return;
-
-            const translated = lang === "pt"
-                ? key
-                : (dictionary[rawText.trim()] || normalizedDictionary.get(key) || key);
-
-            if (translated !== key || lang === "pt") {
-                element.textContent = translated;
-            }
-        });
-
+        // Atributos acessíveis e metadados visíveis ao usuário.
         document.querySelectorAll("[aria-label], [title], [placeholder], [alt]").forEach((el) => {
             if (!originalText.has(el)) {
                 originalText.set(el, {
@@ -674,24 +688,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            if (lang === "pt") {
-                const original = originalText.get(el);
-                ["aria-label", "title", "placeholder", "alt"].forEach((attribute) => {
-                    const property = attribute === "aria-label" ? "ariaLabel" : attribute;
-                    if (original[property] !== null) el.setAttribute(attribute, original[property]);
-                });
-                return;
-            }
-
             const original = originalText.get(el);
+
             ["aria-label", "title", "placeholder", "alt"].forEach((attribute) => {
                 const property = attribute === "aria-label" ? "ariaLabel" : attribute;
                 const value = original[property];
-                if (!value) return;
-                const translated = dictionary[value] || normalizedDictionary.get(normalizeTranslationKey(value)) || value;
+                if (value === null) return;
+
+                if (lang === "pt") {
+                    el.setAttribute(attribute, value);
+                    return;
+                }
+
+                const translated = dictionary[value]
+                    || normalizedDictionary.get(normalizeTranslationKey(value))
+                    || value;
+
                 el.setAttribute(attribute, translated);
             });
         });
+
+        // Labels dinâmicos do menu mobile.
+        if (menuToggle) {
+            const menuLabel = mainNav?.classList.contains("active")
+                ? { pt: "Fechar menu", en: "Close menu", es: "Cerrar menú" }
+                : { pt: "Abrir menu", en: "Open menu", es: "Abrir menú" };
+
+            menuToggle.setAttribute("aria-label", menuLabel[lang]);
+        }
 
         const titleMap = {
             pt: "MantovaniSys | Site + Google para sua empresa aparecer",
