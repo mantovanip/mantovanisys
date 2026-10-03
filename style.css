@@ -3595,3 +3595,73 @@ html,
 body {
     touch-action: pan-x pan-y;
 }
+
+
+/* =========================================================
+   FUNDO ATMOSFÉRICO — MANTOVANISYS
+   Efeito orgânico premium sem azul/roxo.
+   ========================================================= */
+
+.hero {
+    isolation: isolate;
+    position: relative;
+    background:
+        radial-gradient(circle at 78% 18%, rgba(199, 168, 107, .16), transparent 26%),
+        radial-gradient(circle at 18% 78%, rgba(109, 139, 116, .10), transparent 28%),
+        var(--blue-dark);
+}
+
+.hero::before,
+.hero::after {
+    position: absolute;
+    z-index: -1;
+    width: 38vw;
+    height: 38vw;
+    min-width: 280px;
+    min-height: 280px;
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+    filter: blur(70px);
+    opacity: .42;
+    will-change: transform;
+}
+
+.hero::before {
+    top: 8%;
+    right: -10%;
+    background: rgba(199, 168, 107, .18);
+    animation: mantovaniGlowOne 14s ease-in-out infinite alternate;
+}
+
+.hero::after {
+    bottom: -18%;
+    left: -12%;
+    background: rgba(109, 139, 116, .14);
+    animation: mantovaniGlowTwo 18s ease-in-out infinite alternate;
+}
+
+@keyframes mantovaniGlowOne {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    100% {
+        transform: translate3d(-7vw, 4vh, 0) scale(1.18);
+    }
+}
+
+@keyframes mantovaniGlowTwo {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1.05);
+    }
+    100% {
+        transform: translate3d(8vw, -5vh, 0) scale(.92);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero::before,
+    .hero::after {
+        animation: none;
+    }
+}
