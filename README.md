@@ -134,6 +134,16 @@ mantovanisys.com.br
 
 ---
 
+## Projetos
+
+### DolceMed
+
+**SaaS • Saúde** — plataforma de gestão para clínicas e profissionais de saúde, com agenda, pacientes, profissionais, serviços e agendamento público.
+
+**Projeto:** https://dolcemed.vercel.app/
+
+![DolceMed](https://raw.githubusercontent.com/mantovanip/dolcemed/main/public/58D4E852-C903-421D-8DEA-F6F421F647F2.png)
+
 ## Autoria
 
 **Desenvolvimento, arquitetura, design e manutenção**
