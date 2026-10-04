@@ -72,7 +72,7 @@ mantovanisys/
 | Dados estruturados | JSON-LD |
 | Fontes | Google Fonts |
 | Versionamento | Git + GitHub |
-| Publicação | GitHub / Vercel conforme ambiente |
+| Publicação | GitHub / Cloudflare conforme ambiente |
 
 ---
 
