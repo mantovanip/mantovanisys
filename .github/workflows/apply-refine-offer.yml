@@ -1,4 +1,4 @@
-name: Apply offer refinement
+name: Apply Kbella portfolio card
 on:
   push:
     paths:
@@ -10,10 +10,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python scripts/refine_offer.py
-      - run: |
+      - name: Add Kbella Flor card
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          if 'case-kbella-flor.webp' not in s:
+              needle='<article class="case-card">\n                        <div class="case-frame">\n                            <div class="case-image">\n                                <img src="images/case-lubrisin.png"'
+              i=s.index(needle)
+              card='''<article class="case-card">
+                        <div class="case-frame">
+                            <div class="case-image">
+                                <img src="images/case-kbella-flor.webp" alt="Site da Kbella Flor desenvolvido pela MantovaniSys" loading="lazy" width="1200" height="675">
+                                <div class="case-image-overlay"><span>ABRIR PROJETO</span><span class="case-arrow" aria-hidden="true"></span></div>
+                            </div>
+                            <div class="case-content">
+                                <span class="case-category">FLORICULTURA • SITE INSTITUCIONAL</span>
+                                <h3>Kbella Flor</h3>
+                                <p>Site demonstrativo para floricultura, com catálogo visual, apresentação da marca e chamadas diretas para pedidos pelo WhatsApp.</p>
+                                <a href="https://mantovanip.github.io/kbella-flor/" target="_blank" rel="noopener noreferrer" class="case-link">Abrir projeto <span aria-hidden="true"></span></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    '''
+              p.write_text(s[:i]+card+s[i:])
+      - name: Commit
+        run: |
           git config user.name "MantovaniSys Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add script.js style.css
-          git commit -m "fix: smaller animated offer popup with sound"
+          git add index.html
+          git diff --cached --quiet || git commit -m "feat: add Kbella Flor to portfolio"
           git push
