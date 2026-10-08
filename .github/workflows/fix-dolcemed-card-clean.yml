@@ -1,0 +1,32 @@
+name: Patch DolceMed card cleanly
+on:
+  push:
+    branches: [dolcemed-card-clean]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dolcemed-card-clean
+      - name: Patch exact bytes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          b = p.read_bytes()
+          b = b.replace(b'https://raw.githubusercontent.com/mantovanip/dolcemed/main/public/58D4E852-C903-421D-8DEA-F6F421F647F2.png', b'images/case-dolcemed.webp')
+          b = b.replace(b'https://dolcemed.vercel.app/', b'https://dolcemed.dolcemed.workers.dev/')
+          p.write_bytes(b)
+          Path('.github/workflows/fix-dolcemed-card-clean.yml').unlink()
+          PY
+      - name: Commit final patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix: update DolceMed card image and production URL"
+          git push origin HEAD:dolcemed-card-clean
