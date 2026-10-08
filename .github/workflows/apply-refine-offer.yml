@@ -10,46 +10,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Fix project modal and promotional marker
-        shell: python
+      - name: Patch portfolio modal
         run: |
+          python - <<'PY'
           from pathlib import Path
-
-          js = Path('script.js')
-          s = js.read_text()
-          old = '''portfolioModal.innerHTML = `<div class="site-modal-backdrop" data-modal-close></div><div class="site-modal-dialog portfolio-modal-dialog" role="dialog" aria-modal="true" aria-label="Visualização do projeto"><button class="site-modal-close" type="button" aria-label="Fechar" data-modal-close>×</button><img class="portfolio-modal-image" src="" alt=""><div class="portfolio-modal-footer"><div><span class="portfolio-modal-category"></span><h3 class="portfolio-modal-title"></h3></div><a class="btn btn-primary portfolio-modal-link" href="#" target="_blank" rel="noopener noreferrer">Abrir projeto</a></div></div>`;'''
-          new = '''portfolioModal.innerHTML = `<div class="site-modal-backdrop" data-modal-close></div><div class="site-modal-dialog portfolio-modal-dialog" role="dialog" aria-modal="true" aria-label="Visualização do projeto"><button class="site-modal-close" type="button" aria-label="Fechar" data-modal-close>×</button><div class="portfolio-modal-layout"><div class="portfolio-modal-media"><img class="portfolio-modal-image" src="" alt=""></div><div class="portfolio-modal-info"><span class="portfolio-modal-category"></span><h3 class="portfolio-modal-title"></h3><p class="portfolio-modal-description"></p><div class="portfolio-modal-meta"><span>Projeto publicado</span><span>Design responsivo</span><span>Contato integrado</span></div><a class="btn btn-primary portfolio-modal-link" href="#" target="_blank" rel="noopener noreferrer">Abrir projeto</a></div></div></div>`;'''
-          if old in s:
-              s = s.replace(old, new)
-          old_open = '''const openPortfolioModal=(card)=>{const image=card.querySelector(".case-image img"),title=card.querySelector(".case-content h3"),category=card.querySelector(".case-category"),link=card.querySelector(".case-link");if(!image||!link)return;const modalImage=portfolioModal.querySelector(".portfolio-modal-image");modalImage.src=image.currentSrc||image.src;modalImage.alt=image.alt||title?.textContent||"Projeto MantovaniSys";portfolioModal.querySelector(".portfolio-modal-title").textContent=title?.textContent||"Projeto";portfolioModal.querySelector(".portfolio-modal-category").textContent=category?.textContent||"PROJETO";portfolioModal.querySelector(".portfolio-modal-link").href=link.href;portfolioModal.classList.add("active");portfolioModal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");};'''
-          new_open = '''const openPortfolioModal=(card)=>{const image=card.querySelector(".case-image img"),title=card.querySelector(".case-content h3"),category=card.querySelector(".case-category"),description=card.querySelector(".case-content p"),link=card.querySelector(".case-link");if(!image||!link)return;const modalImage=portfolioModal.querySelector(".portfolio-modal-image");modalImage.src=image.currentSrc||image.src;modalImage.alt=image.alt||title?.textContent||"Projeto MantovaniSys";portfolioModal.querySelector(".portfolio-modal-title").textContent=title?.textContent||"Projeto";portfolioModal.querySelector(".portfolio-modal-category").textContent=category?.textContent||"PROJETO";portfolioModal.querySelector(".portfolio-modal-description").textContent=description?.textContent||"Projeto desenvolvido pela MantovaniSys.";portfolioModal.querySelector(".portfolio-modal-link").href=link.href;portfolioModal.classList.add("active");portfolioModal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");};'''
-          if old_open in s:
-              s = s.replace(old_open, new_open)
-          js.write_text(s)
-
-          css = Path('style.css')
-          c = css.read_text()
-          marker = '''
-
-/* Projeto modal compacto + preco antigo com pincel atomico */
-.portfolio-modal-dialog{width:min(980px,92vw)!important;overflow:hidden!important}
-.portfolio-modal-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.85fr);align-items:stretch}
-.portfolio-modal-media{display:flex;align-items:center;justify-content:center;min-width:0;padding:18px;background:#061426}
-.portfolio-modal-image{display:block;width:auto!important;max-width:100%!important;height:auto!important;max-height:62vh!important;object-fit:contain!important;border-radius:10px}
-.portfolio-modal-info{display:flex;flex-direction:column;justify-content:center;padding:34px 30px;min-width:0}
-.portfolio-modal-title{margin:7px 0 12px;font-size:clamp(1.55rem,2.5vw,2.15rem)}
-.portfolio-modal-description{margin:0 0 20px;color:var(--text-muted);font-size:.94rem;line-height:1.65}
-.portfolio-modal-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
-.portfolio-modal-meta span{padding:7px 9px;border:1px solid rgba(114,204,255,.18);border-radius:999px;color:#b9c9d8;font-size:.7rem;background:rgba(35,142,234,.07)}
-.portfolio-modal-info .portfolio-modal-link{align-self:flex-start;min-height:42px;padding:10px 17px;font-size:.82rem}
-.plan-price-old,.offer-price span{position:relative;display:inline-block;text-decoration:none!important}
-.plan-price-old::after,.offer-price span::after{content:"";position:absolute;left:-7%;right:-7%;top:48%;height:8px;transform:rotate(-5deg);border-radius:60% 35% 55% 40%;background:linear-gradient(90deg,rgba(224,42,42,.25),#ef3535 12%,#d71920 50%,#f04444 88%,rgba(224,42,42,.28));box-shadow:0 1px 0 rgba(120,0,0,.25);clip-path:polygon(0 35%,7% 18%,18% 30%,30% 8%,44% 27%,58% 12%,72% 31%,86% 13%,100% 34%,97% 72%,84% 61%,70% 83%,55% 65%,39% 88%,23% 66%,8% 82%,0 65%);pointer-events:none}
-@media(max-width:760px){.portfolio-modal-dialog{width:min(94vw,620px)!important;max-height:88vh!important;overflow:auto!important}.portfolio-modal-layout{grid-template-columns:1fr}.portfolio-modal-media{padding:12px}.portfolio-modal-image{max-height:42vh!important}.portfolio-modal-info{padding:22px 20px}.portfolio-modal-info .portfolio-modal-link{width:100%}}
-'''
-          if 'Projeto modal compacto + preco antigo com pincel atomico' not in c:
-              c += marker
-          css.write_text(c)
-      - name: Commit
+          p=Path('script.js')
+          s=p.read_text()
+          old='portfolioModal.innerHTML = `<div class="site-modal-backdrop" data-modal-close></div><div class="site-modal-dialog portfolio-modal-dialog" role="dialog" aria-modal="true" aria-label="Visualização do projeto"><button class="site-modal-close" type="button" aria-label="Fechar" data-modal-close>×</button><img class="portfolio-modal-image" src="" alt=""><div class="portfolio-modal-footer"><div><span class="portfolio-modal-category"></span><h3 class="portfolio-modal-title"></h3></div><a class="btn btn-primary portfolio-modal-link" href="#" target="_blank" rel="noopener noreferrer">Abrir projeto</a></div></div>`;'
+          new='portfolioModal.innerHTML = `<div class="site-modal-backdrop" data-modal-close></div><div class="site-modal-dialog portfolio-modal-dialog" role="dialog" aria-modal="true" aria-label="Visualização do projeto"><button class="site-modal-close" type="button" aria-label="Fechar" data-modal-close>×</button><div class="portfolio-modal-layout"><div class="portfolio-modal-media"><img class="portfolio-modal-image" src="" alt=""></div><div class="portfolio-modal-info"><span class="portfolio-modal-category"></span><h3 class="portfolio-modal-title"></h3><p class="portfolio-modal-description"></p><div class="portfolio-modal-meta"><span>Projeto publicado</span><span>Design responsivo</span><span>Contato integrado</span></div><a class="btn btn-primary portfolio-modal-link" href="#" target="_blank" rel="noopener noreferrer">Abrir projeto</a></div></div></div>`;'
+          if old in s:s=s.replace(old,new)
+          old2='const openPortfolioModal=(card)=>{const image=card.querySelector(".case-image img"),title=card.querySelector(".case-content h3"),category=card.querySelector(".case-category"),link=card.querySelector(".case-link");if(!image||!link)return;const modalImage=portfolioModal.querySelector(".portfolio-modal-image");modalImage.src=image.currentSrc||image.src;modalImage.alt=image.alt||title?.textContent||"Projeto MantovaniSys";portfolioModal.querySelector(".portfolio-modal-title").textContent=title?.textContent||"Projeto";portfolioModal.querySelector(".portfolio-modal-category").textContent=category?.textContent||"PROJETO";portfolioModal.querySelector(".portfolio-modal-link").href=link.href;portfolioModal.classList.add("active");portfolioModal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");};'
+          new2='const openPortfolioModal=(card)=>{const image=card.querySelector(".case-image img"),title=card.querySelector(".case-content h3"),category=card.querySelector(".case-category"),description=card.querySelector(".case-content p"),link=card.querySelector(".case-link");if(!image||!link)return;const modalImage=portfolioModal.querySelector(".portfolio-modal-image");modalImage.src=image.currentSrc||image.src;modalImage.alt=image.alt||title?.textContent||"Projeto MantovaniSys";portfolioModal.querySelector(".portfolio-modal-title").textContent=title?.textContent||"Projeto";portfolioModal.querySelector(".portfolio-modal-category").textContent=category?.textContent||"PROJETO";portfolioModal.querySelector(".portfolio-modal-description").textContent=description?.textContent||"Projeto desenvolvido pela MantovaniSys.";portfolioModal.querySelector(".portfolio-modal-link").href=link.href;portfolioModal.classList.add("active");portfolioModal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");};'
+          if old2 in s:s=s.replace(old2,new2)
+          p.write_text(s)
+          c=Path('style.css')
+          css=c.read_text()
+          tag='/* portfolio compact modal + atomic red marker */'
+          rules='''\n\n/* portfolio compact modal + atomic red marker */\n.portfolio-modal-dialog{width:min(980px,92vw)!important;overflow:hidden!important}\n.portfolio-modal-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.8fr)}\n.portfolio-modal-media{display:flex;align-items:center;justify-content:center;min-width:0;padding:18px;background:#061426}\n.portfolio-modal-image{display:block;width:auto!important;max-width:100%!important;height:auto!important;max-height:60vh!important;object-fit:contain!important;border-radius:10px}\n.portfolio-modal-info{display:flex;flex-direction:column;justify-content:center;padding:32px 28px;min-width:0}\n.portfolio-modal-title{margin:7px 0 12px;font-size:clamp(1.55rem,2.5vw,2.15rem)}\n.portfolio-modal-description{margin:0 0 20px;color:var(--text-muted);font-size:.94rem;line-height:1.65}\n.portfolio-modal-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}\n.portfolio-modal-meta span{padding:7px 9px;border:1px solid rgba(114,204,255,.18);border-radius:999px;color:#b9c9d8;font-size:.7rem;background:rgba(35,142,234,.07)}\n.portfolio-modal-info .portfolio-modal-link{align-self:flex-start;min-height:42px;padding:10px 17px;font-size:.82rem}\n.plan-price-old,.offer-price span{position:relative;display:inline-block;text-decoration:none!important}\n.plan-price-old::after,.offer-price span::after{content:"";position:absolute;left:-8%;right:-8%;top:48%;height:9px;transform:rotate(-5deg);background:linear-gradient(90deg,rgba(215,25,32,.3),#ef3535 10%,#d71920 48%,#f04444 88%,rgba(215,25,32,.3));clip-path:polygon(0 36%,8% 17%,19% 31%,31% 7%,45% 28%,59% 11%,73% 31%,87% 13%,100% 35%,97% 73%,84% 61%,70% 84%,55% 65%,39% 88%,23% 66%,8% 82%,0 65%);pointer-events:none}\n@media(max-width:760px){.portfolio-modal-dialog{width:min(94vw,620px)!important;max-height:88vh!important;overflow:auto!important}.portfolio-modal-layout{grid-template-columns:1fr}.portfolio-modal-media{padding:12px}.portfolio-modal-image{max-height:40vh!important}.portfolio-modal-info{padding:22px 20px}.portfolio-modal-info .portfolio-modal-link{width:100%}}\n'''
+          if tag not in css:css+=rules
+          c.write_text(css)
+          PY
+      - name: Commit changes
         run: |
           git config user.name "MantovaniSys Bot"
           git config user.email "actions@users.noreply.github.com"
