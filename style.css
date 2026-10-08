@@ -3700,3 +3700,17 @@ body.modal-open{overflow:hidden}.case-card{cursor:zoom-in}.case-link{cursor:poin
 .plan-price-old,.offer-price span{position:relative;display:inline-block;text-decoration:none!important}
 .plan-price-old::after,.offer-price span::after{content:"";position:absolute;left:-8%;right:-8%;top:48%;height:9px;transform:rotate(-5deg);background:linear-gradient(90deg,rgba(215,25,32,.3),#ef3535 10%,#d71920 48%,#f04444 88%,rgba(215,25,32,.3));clip-path:polygon(0 36%,8% 17%,19% 31%,31% 7%,45% 28%,59% 11%,73% 31%,87% 13%,100% 35%,97% 73%,84% 61%,70% 84%,55% 65%,39% 88%,23% 66%,8% 82%,0 65%);pointer-events:none}
 @media(max-width:760px){.portfolio-modal-dialog{width:min(94vw,620px)!important;max-height:88vh!important;overflow:auto!important}.portfolio-modal-layout{grid-template-columns:1fr}.portfolio-modal-media{padding:12px}.portfolio-modal-image{max-height:40vh!important}.portfolio-modal-info{padding:22px 20px}.portfolio-modal-info .portfolio-modal-link{width:100%}}
+
+
+/* compact portfolio details and atomic marker */
+.portfolio-modal-dialog{width:min(920px,92vw)!important;overflow:hidden!important}
+.portfolio-modal-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr)}
+.portfolio-modal-media{display:flex;align-items:center;justify-content:center;min-width:0;padding:16px;background:#061426}
+.portfolio-modal-image{display:block;width:auto!important;max-width:100%!important;height:auto!important;max-height:58vh!important;object-fit:contain!important;border-radius:9px}
+.portfolio-modal-info{display:flex;flex-direction:column;justify-content:center;padding:30px 26px;min-width:0}
+.portfolio-modal-title{margin:7px 0 12px;font-size:clamp(1.5rem,2.4vw,2rem)}
+.portfolio-modal-description{margin:0 0 22px;color:var(--text-muted);font-size:.92rem;line-height:1.65}
+.portfolio-modal-info .portfolio-modal-link{align-self:flex-start;min-height:40px;padding:9px 16px;font-size:.8rem}
+.plan-price-old,.offer-price span{position:relative;display:inline-block;text-decoration:none!important}
+.plan-price-old::after,.offer-price span::after{content:"";position:absolute;left:-8%;right:-8%;top:48%;height:9px;transform:rotate(-5deg);background:linear-gradient(90deg,rgba(215,25,32,.28),#ef3535 10%,#d71920 48%,#f04444 88%,rgba(215,25,32,.28));clip-path:polygon(0 36%,8% 17%,19% 31%,31% 7%,45% 28%,59% 11%,73% 31%,87% 13%,100% 35%,97% 73%,84% 61%,70% 84%,55% 65%,39% 88%,23% 66%,8% 82%,0 65%);pointer-events:none}
+@media(max-width:760px){.portfolio-modal-dialog{width:min(94vw,600px)!important;max-height:88vh!important;overflow:auto!important}.portfolio-modal-layout{grid-template-columns:1fr}.portfolio-modal-media{padding:10px}.portfolio-modal-image{max-height:38vh!important}.portfolio-modal-info{padding:20px}.portfolio-modal-info .portfolio-modal-link{width:100%}}
