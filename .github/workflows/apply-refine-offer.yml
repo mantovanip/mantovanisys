@@ -1,0 +1,19 @@
+name: Apply offer refinement
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-refine-offer.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/refine_offer.py
+      - run: |
+          git config user.name "MantovaniSys Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add script.js style.css
+          git commit -m "fix: smaller animated offer popup with sound"
+          git push
