@@ -1,0 +1,32 @@
+name: Apply DolceMed portfolio differentiators
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-dolcemed-differentials.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/dolcemed-differentials
+      - name: Update DolceMed portfolio content
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          old = 'SaaS para gestão de clínicas e profissionais de saúde, centralizando profissionais, serviços, consultas, pacientes e agendamentos.'
+          new = 'SaaS multi-clínica com isolamento de dados, permissões granulares, integração com Google Calendar, autenticação Google e proteção anti-bot.'
+          if old not in s:
+              raise SystemExit('DolceMed description not found')
+          p.write_text(s.replace(old, new, 1))
+      - name: Commit
+        run: |
+          git config user.name "MantovaniSys Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "feat: highlight DolceMed SaaS differentiators"
+          git push origin HEAD:fix/dolcemed-differentials
