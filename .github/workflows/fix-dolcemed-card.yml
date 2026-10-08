@@ -1,0 +1,35 @@
+name: Fix DolceMed card
+
+on:
+  push:
+    branches: [ci-dolcemed-fix]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ci-dolcemed-fix
+      - name: Update DolceMed card
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('https://raw.githubusercontent.com/mantovanip/dolcemed/main/public/58D4E852-C903-421D-8DEA-F6F421F647F2.png', 'images/case-dolcemed.webp')
+          s = s.replace('https://dolcemed.vercel.app/', 'https://dolcemed.dolcemed.workers.dev/')
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "fix: update DolceMed card image and production URL"
+          git push origin HEAD:ci-dolcemed-fix
