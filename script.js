@@ -445,16 +445,18 @@ document.addEventListener("DOMContentLoaded", () => {
     portfolioModal.addEventListener("click",(event)=>{if(event.target.closest("[data-modal-close]"))closePortfolioModal();});
 
     /* =========================================================
-       OFERTA — POP-UP A CADA 30 SEGUNDOS
+       OFERTA — POP-UP IMEDIATO + LEMBRETE A CADA 30 SEGUNDOS
        ========================================================= */
     const offerModal=document.createElement("div");
     offerModal.className="site-modal offer-modal";offerModal.setAttribute("aria-hidden","true");
-    offerModal.innerHTML=`<div class="site-modal-backdrop" data-offer-close></div><div class="site-modal-dialog offer-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="offerModalTitle"><button class="site-modal-close" type="button" aria-label="Fechar oferta" data-offer-close>×</button><span class="offer-kicker">OFERTA ESPECIAL • 39,74% OFF</span><h2 id="offerModalTitle">Seu site profissional por <strong>R$ 420</strong></h2><p>Site profissional com <strong>hospedagem e domínio próprio por 1 ano</strong>.</p><div class="offer-price"><span>De R$ 697</span><strong>R$ 420</strong></div><button class="btn btn-primary offer-cta" type="button">Ver oferta nos planos</button></div>`;
+    offerModal.innerHTML=`<div class="site-modal-backdrop" data-offer-close></div><div class="site-modal-dialog offer-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="offerModalTitle"><button class="site-modal-close" type="button" aria-label="Fechar oferta" data-offer-close>×</button><span class="offer-kicker">OFERTA ESPECIAL • 39,74% OFF</span><h2 id="offerModalTitle">Seu site profissional por <strong>R$ 420</strong></h2><p>Site profissional + <strong>hospedagem e domínio próprio por 1 ano</strong>.</p><div class="offer-price"><span>De R$ 697</span><strong>R$ 420</strong></div><button class="btn btn-primary offer-cta" type="button">Ver oferta nos planos</button></div>`;
     document.body.appendChild(offerModal);
+    const playOfferCoin=()=>{try{const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;const ctx=new AudioCtx(),now=ctx.currentTime,gain=ctx.createGain();gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.06,now+.015);gain.gain.exponentialRampToValueAtTime(.0001,now+.38);gain.connect(ctx.destination);[880,1320].forEach((freq,i)=>{const osc=ctx.createOscillator();osc.type="sine";osc.frequency.setValueAtTime(freq,now+i*.07);osc.connect(gain);osc.start(now+i*.07);osc.stop(now+.32+i*.07);});setTimeout(()=>ctx.close(),600);}catch(e){}};
     const closeOfferModal=()=>{offerModal.classList.remove("active");offerModal.setAttribute("aria-hidden","true");if(!portfolioModal.classList.contains("active"))document.body.classList.remove("modal-open");};
-    const openOfferModal=()=>{if(portfolioModal.classList.contains("active"))return;offerModal.classList.add("active");offerModal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");};
+    const openOfferModal=()=>{if(portfolioModal.classList.contains("active"))return;offerModal.classList.add("active");offerModal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");playOfferCoin();};
     offerModal.addEventListener("click",(event)=>{if(event.target.closest("[data-offer-close]"))closeOfferModal();});
     offerModal.querySelector(".offer-cta")?.addEventListener("click",()=>{closeOfferModal();document.getElementById("planos")?.scrollIntoView({behavior:"smooth",block:"start"});});
+    requestAnimationFrame(()=>setTimeout(openOfferModal,300));
     window.setInterval(openOfferModal,30000);
     document.addEventListener("keydown",(event)=>{if(event.key==="Escape"){closePortfolioModal();closeOfferModal();}});
 
