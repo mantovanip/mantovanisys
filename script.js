@@ -430,6 +430,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
+    /* =========================================================
+       PROJETOS — VISUALIZAÇÃO EM MODAL
+       ========================================================= */
+    const portfolioModal = document.createElement("div");
+    portfolioModal.className = "site-modal portfolio-modal";
+    portfolioModal.setAttribute("aria-hidden", "true");
+    portfolioModal.innerHTML = `<div class="site-modal-backdrop" data-modal-close></div><div class="site-modal-dialog portfolio-modal-dialog" role="dialog" aria-modal="true" aria-label="Visualização do projeto"><button class="site-modal-close" type="button" aria-label="Fechar" data-modal-close>×</button><img class="portfolio-modal-image" src="" alt=""><div class="portfolio-modal-footer"><div><span class="portfolio-modal-category"></span><h3 class="portfolio-modal-title"></h3></div><a class="btn btn-primary portfolio-modal-link" href="#" target="_blank" rel="noopener noreferrer">Abrir projeto</a></div></div>`;
+    document.body.appendChild(portfolioModal);
+    const closePortfolioModal=()=>{portfolioModal.classList.remove("active");portfolioModal.setAttribute("aria-hidden","true");document.body.classList.remove("modal-open");};
+    const openPortfolioModal=(card)=>{const image=card.querySelector(".case-image img"),title=card.querySelector(".case-content h3"),category=card.querySelector(".case-category"),link=card.querySelector(".case-link");if(!image||!link)return;const modalImage=portfolioModal.querySelector(".portfolio-modal-image");modalImage.src=image.currentSrc||image.src;modalImage.alt=image.alt||title?.textContent||"Projeto MantovaniSys";portfolioModal.querySelector(".portfolio-modal-title").textContent=title?.textContent||"Projeto";portfolioModal.querySelector(".portfolio-modal-category").textContent=category?.textContent||"PROJETO";portfolioModal.querySelector(".portfolio-modal-link").href=link.href;portfolioModal.classList.add("active");portfolioModal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");};
+    casesTrack?.addEventListener("click",(event)=>{if(event.target.closest(".case-link"))return;const card=event.target.closest(".case-card");if(card)openPortfolioModal(card);});
+    portfolioModal.addEventListener("click",(event)=>{if(event.target.closest("[data-modal-close]"))closePortfolioModal();});
+
+    /* =========================================================
+       OFERTA — POP-UP A CADA 30 SEGUNDOS
+       ========================================================= */
+    const offerModal=document.createElement("div");
+    offerModal.className="site-modal offer-modal";offerModal.setAttribute("aria-hidden","true");
+    offerModal.innerHTML=`<div class="site-modal-backdrop" data-offer-close></div><div class="site-modal-dialog offer-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="offerModalTitle"><button class="site-modal-close" type="button" aria-label="Fechar oferta" data-offer-close>×</button><span class="offer-kicker">OFERTA ESPECIAL • 39,74% OFF</span><h2 id="offerModalTitle">Seu site profissional por <strong>R$ 420</strong></h2><p>Site profissional com <strong>hospedagem e domínio próprio por 1 ano</strong>.</p><div class="offer-price"><span>De R$ 697</span><strong>R$ 420</strong></div><button class="btn btn-primary offer-cta" type="button">Ver oferta nos planos</button></div>`;
+    document.body.appendChild(offerModal);
+    const closeOfferModal=()=>{offerModal.classList.remove("active");offerModal.setAttribute("aria-hidden","true");if(!portfolioModal.classList.contains("active"))document.body.classList.remove("modal-open");};
+    const openOfferModal=()=>{if(portfolioModal.classList.contains("active"))return;offerModal.classList.add("active");offerModal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");};
+    offerModal.addEventListener("click",(event)=>{if(event.target.closest("[data-offer-close]"))closeOfferModal();});
+    offerModal.querySelector(".offer-cta")?.addEventListener("click",()=>{closeOfferModal();document.getElementById("planos")?.scrollIntoView({behavior:"smooth",block:"start"});});
+    window.setInterval(openOfferModal,30000);
+    document.addEventListener("keydown",(event)=>{if(event.key==="Escape"){closePortfolioModal();closeOfferModal();}});
+
     /* =========================================================
        NAVEGAÇÃO LATERAL — PONTOS POR SEÇÃO
        ========================================================= */
