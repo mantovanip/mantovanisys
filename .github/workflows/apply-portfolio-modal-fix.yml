@@ -1,0 +1,19 @@
+name: Apply portfolio modal fix
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-portfolio-modal-fix.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python tools/patch_portfolio_modal.py
+      - run: |
+          git config user.name "MantovaniSys Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add script.js style.css
+          git diff --cached --quiet || git commit -m "fix portfolio modal details and price marker"
+          git push
